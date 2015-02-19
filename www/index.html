@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title></title>
-    </head>
-    <body>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<title>What's Cooking?</title>
+</head>
+<body class="light-green lighten-5">
+
+
+	<header>
+		<nav class="light-green">
+		  <ul id="slide-out" class="side-nav">
+		  	<div id="menu-user-account" class="light-green">
+		  		<img src="img/me.png" class="circle responsive-img center-align" width="75px">
+		  		<h5>Welcome, Mike!</h5>
+		  	</div>
+		    <li><a href="#!"><i class="mdi-action-settings left small"></i>App Settings</a></li>
+		    <li><a href="#!"><i class="mdi-action-info left small"></i>About App</a></li>
+		  </ul>
+		  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+		  <div class="center-align" id="page-title">What's Cooking?</div>
+		</nav>
+	</header>
+
+	<main>
+		<h2>Discover</h2>
+		<div class="light-green lighten-4">lol</div>
+		<h2>Saved Recipes</h2>
+		<div class="light-green lighten-4">lol</div>
+		<h2>Shopping List</h2>
+		<div class="light-green lighten-4">lol</div>
+	</main>
+
+	<footer class="light-green">
+		<ul>
+			<li><a href=""><i class="mdi-action-search"></i></a></li>
+			<li><a href=""><i class="mdi-action-favorite"></i></a></li>
+			<li><a href=""><i class="mdi-editor-format-list-numbered"></i></a></li>
+			<li><a href=""><i class="mdi-action-face-unlock"></i></a></li>
+		</ul>
+	</footer>
+
+
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
 </html>

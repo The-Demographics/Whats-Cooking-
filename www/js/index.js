@@ -1,0 +1,1 @@
+$('.button-collapse').sideNav({menuWidth: 280, activationWidth: 70});
