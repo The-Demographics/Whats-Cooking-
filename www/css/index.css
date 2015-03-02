@@ -88,6 +88,9 @@ h1 {
 a{
     text-decoration: none;
 }
+main{
+    margin-bottom: 60px;
+}
 footer{
     position: fixed;
     bottom: 0;
@@ -130,4 +133,7 @@ footer ul li a{
 }
 .rounded{
     border-radius: 50%;
+}
+.swiper-container{
+    height: 200px;
 }
