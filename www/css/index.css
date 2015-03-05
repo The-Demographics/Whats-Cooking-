@@ -136,8 +136,32 @@ footer ul li a{
     border-radius: 50%;
 }
 .swiper-container{
-    height: 200px;
+    height: 300px;
 }
 #shopping-list{
     padding-left: 20px;
+}
+.slider-info{
+    float: right;
+    width: 40%;
+    max-width: 500px;
+    height: 300px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    color: #fff;
+}
+#discover-1{
+    background-image: url("../img/roastdinner.jpg");
+    background-size: cover;
+}
+#discover-2{
+    background-image: url("../img/hunterschicken.jpg");
+    background-size: cover;
+}
+#discover-3{
+    background-image: url("../img/spagbol.jpg");
+    background-size: cover;
+}
+.buttons-row{
+    text-align: center;
 }
