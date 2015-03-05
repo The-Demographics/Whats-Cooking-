@@ -152,14 +152,22 @@ footer ul li a{
 #discover-1{
     background-image: url("../img/roastdinner.jpg");
     background-size: cover;
+    background-position: center;
 }
 #discover-2{
     background-image: url("../img/hunterschicken.jpg");
     background-size: cover;
+    background-position: center;
 }
 #discover-3{
     background-image: url("../img/spagbol.jpg");
     background-size: cover;
+    background-position: center;
+}
+#saved-1{
+    background-image: url("../img/chickentikka.jpg");
+    background-size: cover;
+    background-position: center;
 }
 .buttons-row{
     text-align: center;
