@@ -113,15 +113,21 @@
 		</div>
 		<h2>Shopping List</h2>
 		<div class="light-green lighten-4" id="shopping-list">
-			<form>
-				<p><input type="checkbox" id="shopping-list-1" />
-				<label for="shopping-list-1">Eggs</label></p>
-				<p><input type="checkbox" id="shopping-list-2" />
-				<label for="shopping-list-2">Chicken</label></p>
-				<p><input type="checkbox" id="shopping-list-3" />
-				<label for="shopping-list-3">Milk</label></p>
-				<p><input type="checkbox" id="shopping-list-4" />
-				<label for="shopping-list-4">Butter</label></p>
+			<form id="shopping-list-form">
+				<p><input type="checkbox" />
+				<label>Eggs</label></p>
+				<p><input type="checkbox" />
+				<label>Chicken</label></p>
+				<p><input type="checkbox" />
+				<label>Milk</label></p>
+				<p><input type="checkbox" />
+				<label>Butter</label></p>
+				<div class="input-field col s12" id="item-submit">
+					<input id="shopping-list-add" type="text" class="validate">
+				</div>
+				<div class="center-text">
+					<a class="waves-effect waves-light btn" id="shopping-list-add-button">Add</a>
+			  </div>
 			</form>
 		</div>
 	</main>

@@ -136,7 +136,7 @@ footer ul li a{
     border-radius: 50%;
 }
 .swiper-container{
-    height: 300px;
+    height: 400px;
 }
 #shopping-list{
     padding-left: 20px;
@@ -173,7 +173,7 @@ footer ul li a{
     text-align: center;
 }
 #discover-card-info{
-    height: 200px;
+    height: 300px;
 }
 .card-action{
     text-align: center;
@@ -183,8 +183,21 @@ footer ul li a{
     margin: 10%;
 }
 .card .card-content .card-title{
-        line-height: 32px;
-    }
+    line-height: 32px;
+}
+.center-text{
+    text-align: center;
+}
+#shopping-list{
+    padding-top: 10px;
+}
+#filter-by-ingredient-list{
+    visibility: visible;
+    display: none;
+}
+#recipe-comments-title{
+    padding-top: 20px;
+}
 
 @media (max-width:470px) {
     .slider-info{
