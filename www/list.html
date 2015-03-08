@@ -9,13 +9,13 @@
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
-	<title>What's Cooking? - Recipe - Chicken Tikka</title>
+	<title>What's Cooking? - Shopping List</title>
 </head>
 <body class="light-green lighten-5">
 
 	<header>
 		<nav class="light-green">
-			<ul id="slide-out" class="side-nav">
+		  <ul id="slide-out" class="side-nav">
 			<div id="menu-user-account" class="light-green">
 				<img src="img/me.png" class="circle responsive-img center-align" width="75px">
 				<h5>Welcome, Mike!</h5>
@@ -30,58 +30,30 @@
 			<li><a href="settings.html"><i class="mdi-action-settings left small"></i>App Settings</a></li>
 			<li><a href="about.html"><i class="mdi-action-info left small"></i>About App</a></li>
 			</div>
-			</ul>
-			<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
-			<div class="center-align" id="page-title">What's Cooking? - Recipes</div>
+		  </ul>
+		  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+		  <div class="center-align" id="page-title">What's Cooking? - Shopping List</div>
 		</nav>
 	</header>
 
 	<main>
-		<div class="row">
-			<div class="col s12">
-				<div class="card">
-					<div class="card-image">
-						<img src="img/chickentikka.jpg">
-						<span class="card-title">Chicken Tikka</span>
-					</div>
-					<div class="card-content" id="recipe-content">
-						<h5>Rating</h5>
-						<i class="mdi-action-stars small"></i>
-						<i class="mdi-action-stars small"></i>
-						<i class="mdi-action-stars small"></i>
-						<i class="mdi-action-stars small"></i>
-						<ul class="collapsible" data-collapsible="expandable">
-							<li>
-								<div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Ingredents</div>
-								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-							</li>
-							<li>
-								<div class="collapsible-header"><i class="mdi-maps-place"></i>Preperation Instructions</div>
-								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-							</li>
-							<li>
-								<div class="collapsible-header"><i class="mdi-social-whatshot"></i>Third</div>
-								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-							</li>
-						</ul>
-						<h5 id="recipe-comments-title">Comments</h5>
-						<div class="row">
-							<div class="col s12">
-								<div class="card">
-			            <div class="card-content">
-			            	<img src="img/me.png" class="circle responsive-img center-align" width="75px">
-			              <span class="card-title blue-grey-text text-darken-4">Mike Linford</span>
-			              <hr/>
-			              <p>I am a very simple card. I am good at containing small bits of information.
-			              I am convenient because I require little markup to use effectively.</p>
-			            </div>
-			          </div>
-			          <div class="center-text"><a class="waves-effect waves-light btn white-text">Add Comment</a></div>
-							</div>
-						</div>
-					</div>
+		<div class="light-green lighten-4" id="shopping-list">
+			<form id="shopping-list-form">
+				<p><input type="checkbox" />
+				<label>Eggs</label></p>
+				<p><input type="checkbox" />
+				<label>Chicken</label></p>
+				<p><input type="checkbox" />
+				<label>Milk</label></p>
+				<p><input type="checkbox" />
+				<label>Butter</label></p>
+				<div class="input-field col s12" id="item-submit">
+					<input id="shopping-list-add" type="text" class="validate">
 				</div>
-			</div>
+				<div class="center-text">
+					<a class="waves-effect waves-light btn" id="shopping-list-add-button">Add</a>
+			  </div>
+			</form>
 		</div>
 	</main>
 
