@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<title>What's Cooking? - Search</title>
+</head>
+<body class="light-green lighten-5">
+
+	<header>
+		<nav class="light-green">
+		  <ul id="slide-out" class="side-nav">
+			<div id="menu-user-account" class="light-green">
+				<img src="img/me.png" class="circle responsive-img center-align" width="75px">
+				<h5>Welcome, Mike!</h5>
+			</div>
+			<li><a href="index.html"><i class="mdi-action-home left small"></i>Home</a></li>
+			<li><a href="search.html"><i class="mdi-action-search left small"></i>Search</a></li>
+			<li><a href="saved.html"><i class="mdi-action-favorite left small"></i>Saved Recipes</a></li>
+			<li><a href="list.html"><i class="mdi-editor-format-list-numbered left small"></i>Shopping List</a></li>
+			<li><a href="edit.html"><i class="mdi-action-face-unlock left small"></i>Edit Profile</a></li>
+			<hr/>
+			<li><a href="settings.html"><i class="mdi-action-settings left small"></i>App Settings</a></li>
+			<li><a href="about.html"><i class="mdi-action-info left small"></i>About App</a></li>
+		  </ul>
+		  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+		  <div class="center-align" id="page-title">Search</div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="row">
+	    <div class="input-field col s7">
+	      <i class="mdi-action-search prefix"></i>
+	    	<input id="search-box" type="text" class="validate" value="Roast Dinner">
+	    	<label for="search-box">Search</label>
+	    </div>
+	    <div class="col s5">
+				  <select id="filter-by">
+				    <option value="" disabled selected>Filter By</option>
+				    <option value="1">Prep Time</option>
+				    <option value="2">Price</option>
+				    <option value="3">Ingredients</option>
+				  </select>
+	    </div>
+    </div>
+    <div class="row" id="filter-by-ingredient-list">
+	    <div class="col s12">
+	    	<ul>
+	    		<li>Chicken</li>
+	    		<li>Roast Potatoes</li>
+	    	</ul>
+	    </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+          <div class="card">
+		        <div class="card-image waves-effect waves-block waves-light">
+		          <img class="activator" src="img/roastdinner.jpg">
+		        </div>
+		        <div class="card-content">
+		          <span class="card-title activator grey-text text-darken-4">Roast Dinner <i class="mdi-navigation-more-vert right"></i></span>
+		          	<div class="card-action">
+		              <a href=""><i class="mdi-action-favorite small"></i></a>
+		              <a href=""><i class="mdi-action-info small"></i></a>
+		            </div>
+		        </div>
+		        <div class="card-reveal">
+		          <span class="card-title grey-text text-darken-4">Roast Dinner <i class="mdi-navigation-close right"></i></span>
+		          <p>Classic, British Chicken Roast Dinner. Will definitley be better than your mom's.</p>
+		        </div>
+		      </div>
+        </div>
+      </div>
+	</main>
+
+	<footer class="light-green">
+		<ul>
+			<li><a href="search.html"><i class="mdi-action-search"></i></a></li>
+			<li><a href="saved.html"><i class="mdi-action-favorite"></i></a></li>
+			<li><a href="list.html"><i class="mdi-editor-format-list-numbered"></i></a></li>
+			<li><a href="edit.html"><i class="mdi-action-face-unlock"></i></a></li>
+		</ul>
+	</footer>
+
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
