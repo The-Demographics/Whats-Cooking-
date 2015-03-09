@@ -7,11 +7,23 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
+    text-transform:uppercase;
     width:100%;
 }
 
@@ -82,129 +94,4 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
-}
-
-/* Main Styles */
-a{
-    text-decoration: none;
-}
-main{
-    margin-bottom: 60px;
-}
-footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 10;
-}
-
-footer ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-footer ul li{
-    float: left;
-    text-align: center;
-    width: 25%;
-    margin: 0;
-}
-footer ul li a{
-    display: block;
-    padding: 5px;
-    text-transform: uppercase;
-    font-size: 2em;
-    color: #ecf0f1;
-}
-#page-title{
-    font-size: 2em;
-}
-#menu-user-account{
-    width: 100%;
-}
-#menu-user-account img{
-    position: relative;
-    top: 10px;
-    left: 10px;
-}
-#menu-user-account h5{
-    position: relative;
-    left: 10px;
-    padding-bottom: 10px;
-}
-.rounded{
-    border-radius: 50%;
-}
-.swiper-container{
-    height: 400px;
-}
-#shopping-list{
-    padding-left: 20px;
-}
-.slider-info{
-    float: right;
-    width: 40%;
-    max-width: 500px;
-    height: 300px;
-    padding: 10px;
-    color: #fff;
-}
-#discover-1{
-    background-image: url("../img/roastdinner.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#discover-2{
-    background-image: url("../img/hunterschicken.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#discover-3{
-    background-image: url("../img/spagbol.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#saved-1{
-    background-image: url("../img/chickentikka.jpg");
-    background-size: cover;
-    background-position: center;
-}
-.buttons-row{
-    text-align: center;
-}
-#discover-card-info{
-    height: 300px;
-}
-.card-action{
-    text-align: center;
-    padding: 0 !important;
-}
-.card-action a{
-    margin: 10%;
-}
-.card .card-content .card-title{
-    line-height: 32px;
-}
-.center-text{
-    text-align: center;
-}
-#shopping-list{
-    padding-top: 10px;
-}
-#filter-by-ingredient-list{
-    visibility: visible;
-    display: none;
-}
-#recipe-comments-title{
-    padding-top: 20px;
-}
-
-@media (max-width:470px) {
-    .slider-info{
-        max-width: 60%;
-        width: 60%;
-    }
-    .card-content{
-        overflow: auto;
-    }
 }
