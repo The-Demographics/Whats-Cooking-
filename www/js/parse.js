@@ -45,6 +45,7 @@ function logIn(){
     success: function(user) {
       currentUser = Parse.User.current();
       alert("You have logged in you #Legend");
+      window.location.href = "index.html";
     },
     error: function(user, error) {
       alert("Incorrect username or password");
