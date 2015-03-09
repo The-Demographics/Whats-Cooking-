@@ -3,15 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.TheDemographics.WhatsCooking"
+        id        = "com.phonegap.WhatsCooking"
         version   = "1.0.0">
 
     <name>Whats Cooking?</name>
 
     <description>
-        If your looking for a recipe, 
-        but don't know what to make,
-        use What's Cooking? for ideas to bake!
+        Edit at a later date
     </description>
 
     <author href="" email="">
@@ -47,7 +45,7 @@
 
     <!-- Plugins -->
 
-    <!-- Core plugins
+    <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
@@ -66,7 +64,6 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-    -->
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
