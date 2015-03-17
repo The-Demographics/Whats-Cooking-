@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhatsCookingapp">
 <head>
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
@@ -12,7 +12,7 @@
 
 	<title>What's Cooking? - Sign Up</title>
 </head>
-<body class="light-green lighten-5">
+<body class="light-green lighten-5" ng-controller="LoginCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -40,29 +40,29 @@
 	<main>
 		<div class="row">
 			<div class="input-field col s6">
-        <input id="firstname" type="text" class="validate">
+        <input id="firstname" type="text" class="validate" ng-model="signup_firstname">
         <label for="firstname">First Name</label>
 			</div>
 			<div class="input-field col s6">
-        <input id="lastname" type="text" class="validate">
+        <input id="lastname" type="text" class="validate" ng-model="signup_lastname">
         <label for="lastname">Last Name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-        <input id="username" type="text" class="validate">
+        <input id="username" type="text" class="validate" ng-model="signup_username">
         <label for="username">Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-        <input id="email" type="text" class="validate">
+        <input id="email" type="text" class="validate" ng-model="signup_email">
         <label for="email">Email</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-        <input id="password" type="password" class="validate">
+        <input id="password" type="password" class="validate" ng-model="signup_password">
         <label for="password">Password</label>
 			</div>
 			<div class="input-field col s6">
@@ -72,19 +72,19 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-			<input type="number" id="age" class="validate">
+			<input type="number" id="age" class="validate" ng-model="signup_age">
 			<label for="age">Age</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-        <input type="checkbox" id="vegetarian" />
+        <input type="checkbox" id="vegetarian" ng-model="signup_vegetarian" />
         <label for="vegetarian">vegetarian?</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" id="signup">Sign Up</a>
+				<a class="waves-effect waves-light btn" id="signup" ng-click="signUp()" ng-model="signup_btn">Sign Up</a>
 			</div>
 		</div>
 	</main>
@@ -99,12 +99,17 @@
 	</footer>
 
 	<!-- <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script> -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+	<script src="js/Ang/app.js"></script>
+  	<script src="js/Ang/services.js"></script>
 	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/parse.js"></script>
+	<!-- <script type="text/javascript" src="js/parse.js"></script> -->
 </body>
 </html>

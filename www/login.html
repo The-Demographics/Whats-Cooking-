@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhatsCookingapp">
 <head>
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
@@ -12,7 +12,7 @@
 
 	<title>What's Cooking? - Login</title>
 </head>
-<body class="light-green lighten-5">
+<body class="light-green lighten-5" ng-controller="LoginCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -40,19 +40,19 @@
 	<main>
 		<div class="row">
 			<div class="input-field col s12">
-        <input id="username-login" type="text" class="validate">
+        <input id="username-login" type="text" class="validate"  ng-model="login_username">
         <label for="username-login">Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-        <input id="password-login" type="password" class="validate">
+        <input id="password-login" type="password" class="validate" ng-model="login_password">
         <label for="password-login">Password</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" id="login">Sign Up</a>
+				<a class="waves-effect waves-light btn" id="login" ng-click="login()" ng-model="login_btn">Login</a>
 			</div>
 		</div>
 	</main>
@@ -67,12 +67,17 @@
 	</footer>
 
 	<!-- <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script> -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
 	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
+	<script src="js/Ang/app.js"></script>
+  	<script src="js/Ang/services.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/parse.js"></script>
+	<!-- <script type="text/javascript" src="js/parse.js"></script> -->
 </body>
 </html>
