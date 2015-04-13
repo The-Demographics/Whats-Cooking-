@@ -1,5 +1,5 @@
 angular.module('WhatsCookingapp', ['WhatsCookingappServices','ngRoute'])
-.controller('LoginCtrl',LoginCtrl);
+.controller('LoginCtrl',LoginCtrl).controller('MainCtrl',MainCtrl);
 
 /* Controllers */
 
@@ -44,7 +44,7 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Fetch the CookBookRecipes from the backend service
   $scope.getMyRecipes = function() {
-    ParseService.getMyBooks(function(results) {
+    ParseService.getMyRecipes(function(results) {
       $scope.$apply(function() {
         $scope.myRecipes = results;
       })
@@ -54,7 +54,7 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
-    ParseService.addRecipe($scope.name, $scope.status, $scope.visibility, $scope.location, function() {
+    ParseService.addRecipe($scope.recipe_title, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
       window.location.href = "index.html";
     });
   }
@@ -71,7 +71,7 @@ function MainCtrl($scope, $location, ParseService) {
   $scope.recipeList = [];
   $scope.myRecipes = [];
   $scope.init();
-  //$scope.getRecipes();
+  $scope.getRecipes();
   //$scope.getMyRecipes();
 }
 MainCtrl.$inject = ['$scope', '$location', 'ParseService']

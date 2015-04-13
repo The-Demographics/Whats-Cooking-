@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhatsCookingapp">
 <head>
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>What's Cooking? - Home</title>
 </head>
-<body class="light-green lighten-5">
+<body class="light-green lighten-5" ng-controller="MainCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -45,12 +45,12 @@
 				<div class="swiper-wrapper">
 				
 					<!-- Swiper Slide -->
-					<div class="swiper-slide" id="discover-1">
+					<div class="swiper-slide" id="discover-1" ng-repeat="recipe in recipeList>
 						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
-								  <span class="card-title grey-text text-darken-4">Roast Dinner</span>
-								  <p>Classic, British Chicken Roast Dinner. Will definitley be better than your mom's.</p>
+								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
+								  <p> {{recipe.get('Description')}}</p>
 								</div>
 								<div class="card-action">
 								  <a href=""><i class="mdi-action-favorite small"></i></a>
@@ -60,35 +60,6 @@
 						</div>
 					</div>
 					<!-- Swiper Slide End -->
-
-					<div class="swiper-slide" id="discover-2">
-						<div class="slider-info">
-							<div class="card grey-text text-darken-4">
-					<div class="card-content" id="discover-card-info">
-					  <span class="card-title grey-text text-darken-4">Hunter's Chicken</span>
-					  <p>Chicken, cooked in BBQ sauce, with bacon and cheese. A dish to die for.</p>
-					</div>
-					<div class="card-action">
-					  <a href=""><i class="mdi-action-favorite small"></i></a>
-					  <a href=""><i class="mdi-action-info small"></i></a>
-					</div>
-				  </div>
-						</div>
-					</div>
-					<div class="swiper-slide" id="discover-3">
-						<div class="slider-info">
-							<div class="card grey-text text-darken-4">
-					<div class="card-content" id="discover-card-info">
-					  <span class="card-title grey-text text-darken-4">Spagetti Bolognaise</span>
-					  <p>Classic Spagetti Bolognaise. Minced beef with a tomato and onion sauce, served with spagetti.</p>
-					</div>
-					<div class="card-action">
-					  <a href=""><i class="mdi-action-favorite small"></i></a>
-					  <a href=""><i class="mdi-action-info small"></i></a>
-					</div>
-				  </div>
-						</div>
-					</div>
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination" id="swiper-pagination-1"></div>

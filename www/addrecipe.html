@@ -12,7 +12,7 @@
 
 	<title>What's Cooking? - Add Recipe</title>
 </head>
-<body class="light-green lighten-5" ng-controller="LoginCtrl">
+<body class="light-green lighten-5" ng-controller="MainCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -40,7 +40,7 @@
 	<main>
 		<div class="row">
 			<div class="input-field col s12">
-        <input id="recipe-title" type="text" class="validate">
+        <input id="recipe-title" type="text" class="validate" ng-model="recipe_title">
         <label for="recipe-title">Recipe Title</label>
 			</div>
 		</div>
@@ -55,13 +55,13 @@
 	  </form>
 		<div class="row">
 			<div class="input-field col s12">
-				<textarea id="recipe-decription" class="materialize-textarea"></textarea>
-        <label for="recipe-decription">Recipe Decription</label>
+				<textarea id="recipe-decription" class="materialize-textarea" ng-model="recipe_description"></textarea>
+        <label for="recipe-decription">Recipe Description</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-		    <select>
+		    <select ng-model="recipe_difficulty">
 		      <option value="1">1</option>
 		      <option value="2">2</option>
 		      <option value="3">3</option>
@@ -73,13 +73,13 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<input id="recipe-time" type="text" class="validate">
+				<input id="recipe-time" type="text" class="validate" ng-model="recipe_preptime">
         <label for="recipe-time">Recipe Prep and Cook Time</label>
 		  </div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<input id="recipe-theme" type="text" class="validate">
+				<input id="recipe-theme" type="text" class="validate" ng-model="recipe_theme">
         <label for="recipe-theme">Recipe Theme</label>
 		  </div>
 		</div>
@@ -91,19 +91,19 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<textarea id="recipe-steps" class="materialize-textarea"></textarea>
+				<textarea id="recipe-steps" class="materialize-textarea" ng-model="recipe_method"></textarea>
         <label for="recipe-steps">Recipe Steps</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-        <input type="checkbox" id="vegetarian" />
+        <input type="checkbox" id="vegetarian" ng-model="recipe_vegetarian" />
         <label for="vegetarian">Vegetarian Frendly?</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" id="signup">Add Recipe</a>
+				<a class="waves-effect waves-light btn" id="signup" ng-click="addRecipe()" ng-model="addRecipe_btn">Add Recipe</a>
 			</div>
 		</div>
 	</main>
