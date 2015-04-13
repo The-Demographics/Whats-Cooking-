@@ -1,0 +1,210 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/* Main Styles */
+a{
+    text-decoration: none;
+}
+main{
+    margin-bottom: 60px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+footer ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+footer ul li{
+    float: left;
+    text-align: center;
+    width: 25%;
+    margin: 0;
+}
+footer ul li a{
+    display: block;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 2em;
+    color: #ecf0f1;
+}
+#page-title{
+    font-size: 2em;
+}
+#menu-user-account{
+    width: 100%;
+}
+#menu-user-account img{
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+#menu-user-account h5{
+    position: relative;
+    left: 10px;
+    padding-bottom: 10px;
+}
+.rounded{
+    border-radius: 50%;
+}
+.swiper-container{
+    height: 400px;
+}
+#shopping-list{
+    padding-left: 20px;
+}
+.slider-info{
+    float: right;
+    width: 40%;
+    max-width: 500px;
+    height: 300px;
+    padding: 10px;
+    color: #fff;
+}
+#discover-1{
+    background-image: url("../img/roastdinner.jpg");
+    background-size: cover;
+    background-position: center;
+}
+#discover-2{
+    background-image: url("../img/hunterschicken.jpg");
+    background-size: cover;
+    background-position: center;
+}
+#discover-3{
+    background-image: url("../img/spagbol.jpg");
+    background-size: cover;
+    background-position: center;
+}
+#saved-1{
+    background-image: url("../img/chickentikka.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.buttons-row{
+    text-align: center;
+}
+#discover-card-info{
+    height: 300px;
+}
+.card-action{
+    text-align: center;
+    padding: 0 !important;
+}
+.card-action a{
+    margin: 10%;
+}
+.card .card-content .card-title{
+    line-height: 32px;
+}
+.center-text{
+    text-align: center;
+}
+#shopping-list{
+    padding-top: 10px;
+}
+#filter-by-ingredient-list{
+    visibility: visible;
+    display: none;
+}
+#recipe-comments-title{
+    padding-top: 20px;
+}
+
+@media (max-width:470px) {
+    .slider-info{
+        max-width: 60%;
+        width: 60%;
+    }
+    .card-content{
+        overflow: auto;
+    }
+}
