@@ -7,10 +7,10 @@ angular.module('WhatsCookingappServices', ['ngResource'])
     Parse.initialize("yKtcMnRhdHbiATzIbmdJX9fDHvCwP4mVKjHhzoup", "KqcToLgLrdh9nMYQYm3xYYbVhFhSDQwgysUl7gxU");
 
     // Cache current logged in user
-    var loggedInUser;
+    var currentUser;
 
     // Cache list of user's recipes
-    var myBooks = [];
+    var myRecipes = [];
 
     // Define parse model and collection for Recipe records
     var Recipe = Parse.Object.extend("Recipes");
@@ -23,8 +23,10 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       login : function login(username, password, callback) {
     	  Parse.User.logIn(username, password, {
     	    success: function(user) {
-            loggedInUser = user;
+            currentUser = Parse.User.current();
     	      callback(user);
+            getRecipes();
+
     	    },
     	    error: function(user, error) {
     	      alert("Error: " + error.message);
@@ -36,13 +38,76 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       signUp : function signUp(username, password,callback) {
       	Parse.User.signUp(username, password,{ ACL: new Parse.ACL()}, {
             success: function(user) {
-                loggedInUser = user;
+                currentUser = user;
                 callback(user);
             },
 
             error: function(user, error) {
               alert("Error: " + error.message);
             }
+        });
+      },
+
+      // Create a new recipe
+      addRecipe : function addRecipe(_title, _image, _description, _difficulty, _preptime, _theme, _method, _vegetarian, callback) {
+        _vegetarian = document.getElementById('vegetarian').checked;
+        _difficulty = Number(_difficulty);
+        var Recipe = Parse.Object.extend("Recipes");
+        var object = new Recipe();
+        var Steps = [];
+        Steps.push(_method);
+        object.set("Name",_title);
+        //object.set("Image", img);
+        object.set("Description",_description);
+        //object.set("AddedBy", currentUser);
+        object.set("Difficulty",_difficulty);
+        object.set("PrepTime",_preptime);
+        object.set("Theme",_theme);
+        object.set("Method",Steps);
+        object.set("Vegetarian",_vegetarian);
+        object.save( null, {
+          success: function(object) {
+            callback();
+            alert("success");
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+            alert("Failure");
+          }
+        });
+
+
+      },
+
+      getRecipes : function getRecipes(callback) {
+        var query = new Parse.Query(Recipe);
+        // use the find method to retrieve all public recipes
+        query.find({
+          success : function(results) {
+            callback(results);
+            console.log("I've ran");
+            for (var i = 0; i < results.length; i++){
+              var object = results[i];
+              console.log(object.get('Name'));
+            }
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
+        });
+      },
+
+      discoverRecipes : function discoverRecipes(callback) {
+        var query = new Parse.Query(Recipe);
+        // use the find method to retrieve all public recipes
+        query.limit(10);
+        query.find({
+          success : function(results) {
+            callback(results);
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
         });
       },
 
@@ -53,8 +118,8 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
       // Get current logged in user
       getUser : function getUser() {
-        if(loggedInUser) {
-          return loggedInUser;
+        if(currentUser) {
+          return currentUser;
         }
       }
     

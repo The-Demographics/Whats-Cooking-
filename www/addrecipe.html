@@ -10,9 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 
-	<title>What's Cooking? - Sign Up</title>
+	<title>What's Cooking? - Add Recipe</title>
 </head>
-<body class="light-green lighten-5" ng-controller="LoginCtrl">
+<body class="light-green lighten-5" ng-controller="MainCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -33,53 +33,15 @@
 			</div>
 		  </ul>
 		  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
-		  <div class="center-align" id="page-title">Sign Up</div>
+		  <div class="center-align" id="page-title">Login</div>
 		</nav>
 	</header>
 
 	<main>
 		<div class="row">
-			<div class="input-field col s6">
-        <input id="firstname" type="text" class="validate" ng-model="signup_firstname">
-        <label for="firstname">First Name</label>
-			</div>
-			<div class="input-field col s6">
-        <input id="lastname" type="text" class="validate" ng-model="signup_lastname">
-        <label for="lastname">Last Name</label>
-			</div>
-		</div>
-		<div class="row">
 			<div class="input-field col s12">
-        <input id="username" type="text" class="validate" ng-model="signup_username">
-        <label for="username">Username</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-        <input id="email" type="text" class="validate" ng-model="signup_email">
-        <label for="email">Email</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s6">
-        <input id="password" type="password" class="validate" ng-model="signup_password">
-        <label for="password">Password</label>
-			</div>
-			<div class="input-field col s6">
-        <input id="password-confirm" type="password" class="validate">
-        <label for="password-confirm">Confirm Password</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-			<input type="number" id="age" class="validate" ng-model="signup_age">
-			<label for="age">Age</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-        <input type="checkbox" id="vegetarian" ng-model="signup_vegetarian" />
-        <label for="vegetarian">vegetarian?</label>
+        <input id="recipe-title" type="text" class="validate" ng-model="recipe_title">
+        <label for="recipe-title">Recipe Title</label>
 			</div>
 		</div>
 		<form action="#">
@@ -87,13 +49,66 @@
 	      <input class="file-path validate" type="text"/>
 	      <div class="btn">
 	        <span>File</span>
-	        <input type="file" />
+	        <input type="file" id="fileselect"  ng-model="recipe_image"> />
 	      </div>
 	    </div>
 	  </form>
 		<div class="row">
+			<div class="input-field col s12">
+				<textarea id="recipe-decription" class="materialize-textarea" ng-model="recipe_description"></textarea>
+        <label for="recipe-decription">Recipe Description</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+		    <select ng-model="recipe_difficulty">
+		      <option value="1">1</option>
+		      <option value="2">2</option>
+		      <option value="3">3</option>
+		      <option value="4">4</option>
+		      <option value="5">5</option>
+		    </select>
+		    <label>Difficulty</label>
+		  </div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="recipe-time" type="text" class="validate" ng-model="recipe_preptime">
+        <label for="recipe-time">Recipe Prep and Cook Time</label>
+		  </div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="recipe-theme" type="text" class="validate" ng-model="recipe_theme">
+        <label for="recipe-theme">Recipe Theme</label>
+		  </div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<textarea id="recipe-ingredients" class="materialize-textarea"></textarea>
+        <label for="recipe-ingredients">Recipe ingredients</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<textarea id="recipe-steps" class="materialize-textarea" ng-model="recipe_method"></textarea>
+        <label for="recipe-steps">Recipe Steps</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+        <input type="checkbox" id="vegetarian" ng-model="recipe_vegetarian" />
+        <label for="vegetarian">Vegetarian Frendly?</label>
+			</div>
+		</div>
+		<div class="row">
 			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" id="signup" ng-click="signUp()" ng-model="signup_btn">Sign Up</a>
+				<a class="waves-effect waves-light btn" ng-click="addRecipe()" ng-model="addRecipe_btn">Add Recipe</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" id="addImg">Add Image</a>
 			</div>
 		</div>
 	</main>
@@ -111,9 +126,9 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
 	<script src="js/Ang/app.js"></script>
   	<script src="js/Ang/services.js"></script>
-	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhatsCookingapp">
 <head>
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>What's Cooking? - Home</title>
 </head>
-<body class="light-green lighten-5">
+<body class="light-green lighten-5" ng-controller="LoginCtrl">
 
 	<header>
 		<nav class="light-green">
@@ -37,54 +37,29 @@
 		</nav>
 	</header>
 
-	<main>
+	<main ng-controller="MainCtrl">
 		<h2>Discover</h2>
 		<div class="light-green lighten-4">
 			<!-- Swiper -->
 			<div class="swiper-container" id="swiper-1">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" id="discover-1">
+				
+					<!-- Swiper Slide -->
+					<div class="swiper-slide" id="discover-1" ng-repeat="recipe in discoverRecipeList">
 						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
-					<div class="card-content" id="discover-card-info">
-					  <span class="card-title grey-text text-darken-4">Roast Dinner</span>
-					  <p>Classic, British Chicken Roast Dinner. Will definitley be better than your mom's.</p>
-					</div>
-					<div class="card-action">
-					  <a href=""><i class="mdi-action-favorite small"></i></a>
-					  <a href=""><i class="mdi-action-info small"></i></a>
-					</div>
-				  </div>
+								<div class="card-content" id="discover-card-info">
+								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
+								  <p> {{recipe.get('Description')}}</p>
+								</div>
+								<div class="card-action">
+								  <a href=""><i class="mdi-action-favorite small"></i></a>
+								  <a href=""><i class="mdi-action-info small"></i></a>
+								</div>
+							 </div>
 						</div>
 					</div>
-					<div class="swiper-slide" id="discover-2">
-						<div class="slider-info">
-							<div class="card grey-text text-darken-4">
-					<div class="card-content" id="discover-card-info">
-					  <span class="card-title grey-text text-darken-4">Hunter's Chicken</span>
-					  <p>Chicken, cooked in BBQ sauce, with bacon and cheese. A dish to die for.</p>
-					</div>
-					<div class="card-action">
-					  <a href=""><i class="mdi-action-favorite small"></i></a>
-					  <a href=""><i class="mdi-action-info small"></i></a>
-					</div>
-				  </div>
-						</div>
-					</div>
-					<div class="swiper-slide" id="discover-3">
-						<div class="slider-info">
-							<div class="card grey-text text-darken-4">
-					<div class="card-content" id="discover-card-info">
-					  <span class="card-title grey-text text-darken-4">Spagetti Bolognaise</span>
-					  <p>Classic Spagetti Bolognaise. Minced beef with a tomato and onion sauce, served with spagetti.</p>
-					</div>
-					<div class="card-action">
-					  <a href=""><i class="mdi-action-favorite small"></i></a>
-					  <a href=""><i class="mdi-action-info small"></i></a>
-					</div>
-				  </div>
-						</div>
-					</div>
+					<!-- Swiper Slide End -->
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination" id="swiper-pagination-1"></div>
@@ -142,7 +117,13 @@
 		</ul>
 	</footer>
 
-	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
+	<script src="js/Ang/app.js"></script>
+  	<script src="js/Ang/services.js"></script>
+	<!-- <script type="text/javascript" src="cordova.js"></script> -->
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>

@@ -1,5 +1,5 @@
 angular.module('WhatsCookingapp', ['WhatsCookingappServices','ngRoute'])
-.controller('LoginCtrl',LoginCtrl);
+.controller('LoginCtrl',LoginCtrl).controller('MainCtrl',MainCtrl);
 
 /* Controllers */
 
@@ -38,13 +38,26 @@ function MainCtrl($scope, $location, ParseService) {
     ParseService.getRecipes(function(results) {
       $scope.$apply(function() {
         $scope.recipeList = results;
+        var len = $scope.recipeList.length;
+        console.log(len);
+      });
+    });
+  }
+
+  // Fetch 10 Recipes from the backend service for the discover page
+  $scope.discoverRecipes = function() {
+    ParseService.discoverRecipes(function(results) {
+      $scope.$apply(function() {
+        $scope.discoverRecipeList = results;
+        var len = $scope.discoverRecipeList.length;
+        console.log(len);
       });
     });
   }
 
   // Fetch the CookBookRecipes from the backend service
   $scope.getMyRecipes = function() {
-    ParseService.getMyBooks(function(results) {
+    ParseService.getMyRecipes(function(results) {
       $scope.$apply(function() {
         $scope.myRecipes = results;
       })
@@ -54,10 +67,12 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
-    ParseService.addRecipe($scope.name, $scope.status, $scope.visibility, $scope.location, function() {
+    ParseService.addRecipe($scope.recipe_title, $scope.recipe_image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
       window.location.href = "index.html";
     });
   }
+
+
 
   // logs the user out and re-direct to login page
   $scope.logout = function() {
@@ -68,11 +83,14 @@ function MainCtrl($scope, $location, ParseService) {
   /**
    * On startup...
    */
+
+  $scope.discoverRecipeList = [];
+  $scope.discoverRecipes();
   $scope.recipeList = [];
+  $scope.getRecipes();
   $scope.myRecipes = [];
   $scope.init();
-  //$scope.getRecipes();
-  //$scope.getMyRecipes();
+  console.log("#Yolo");
 }
 MainCtrl.$inject = ['$scope', '$location', 'ParseService']
 
