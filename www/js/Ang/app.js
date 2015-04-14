@@ -38,6 +38,22 @@ function MainCtrl($scope, $location, ParseService) {
     ParseService.getRecipes(function(results) {
       $scope.$apply(function() {
         $scope.recipeList = results;
+<<<<<<< HEAD
+=======
+        var len = $scope.recipeList.length;
+        console.log(len);
+      });
+    });
+  }
+
+  // Fetch 10 Recipes from the backend service for the discover page
+  $scope.discoverRecipes = function() {
+    ParseService.discoverRecipes(function(results) {
+      $scope.$apply(function() {
+        $scope.discoverRecipeList = results;
+        var len = $scope.discoverRecipeList.length;
+        console.log(len);
+>>>>>>> origin/Tom
       });
     });
   }
@@ -54,11 +70,20 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
+<<<<<<< HEAD
     ParseService.addRecipe($scope.recipe_title, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
+=======
+    ParseService.addRecipe($scope.recipe_title, $scope.recipe_image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
+>>>>>>> origin/Tom
       window.location.href = "index.html";
     });
   }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/Tom
   // logs the user out and re-direct to login page
   $scope.logout = function() {
     ParseService.logout();
@@ -68,11 +93,22 @@ function MainCtrl($scope, $location, ParseService) {
   /**
    * On startup...
    */
+<<<<<<< HEAD
   $scope.recipeList = [];
   $scope.myRecipes = [];
   $scope.init();
   $scope.getRecipes();
   //$scope.getMyRecipes();
+=======
+
+  $scope.discoverRecipeList = [];
+  $scope.discoverRecipes();
+  $scope.recipeList = [];
+  $scope.getRecipes();
+  $scope.myRecipes = [];
+  $scope.init();
+  console.log("#Yolo");
+>>>>>>> origin/Tom
 }
 MainCtrl.$inject = ['$scope', '$location', 'ParseService']
 

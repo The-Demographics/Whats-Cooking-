@@ -25,6 +25,11 @@ angular.module('WhatsCookingappServices', ['ngResource'])
     	    success: function(user) {
             currentUser = Parse.User.current();
     	      callback(user);
+<<<<<<< HEAD
+=======
+            getRecipes();
+
+>>>>>>> origin/Tom
     	    },
     	    error: function(user, error) {
     	      alert("Error: " + error.message);
@@ -36,7 +41,11 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       signUp : function signUp(username, password,callback) {
       	Parse.User.signUp(username, password,{ ACL: new Parse.ACL()}, {
             success: function(user) {
+<<<<<<< HEAD
                 loggedInUser = user;
+=======
+                currentUser = user;
+>>>>>>> origin/Tom
                 callback(user);
             },
 
@@ -47,7 +56,11 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       },
 
       // Create a new recipe
+<<<<<<< HEAD
       addRecipe : function addRecipe(_title, _description, _difficulty, _preptime, _theme, _method, _vegetarian, callback) {
+=======
+      addRecipe : function addRecipe(_title, _image, _description, _difficulty, _preptime, _theme, _method, _vegetarian, callback) {
+>>>>>>> origin/Tom
         _vegetarian = document.getElementById('vegetarian').checked;
         _difficulty = Number(_difficulty);
         var Recipe = Parse.Object.extend("Recipes");
@@ -55,6 +68,10 @@ angular.module('WhatsCookingappServices', ['ngResource'])
         var Steps = [];
         Steps.push(_method);
         object.set("Name",_title);
+<<<<<<< HEAD
+=======
+        //object.set("Image", img);
+>>>>>>> origin/Tom
         object.set("Description",_description);
         //object.set("AddedBy", currentUser);
         object.set("Difficulty",_difficulty);
@@ -72,11 +89,40 @@ angular.module('WhatsCookingappServices', ['ngResource'])
             alert("Failure");
           }
         });
+<<<<<<< HEAD
       },
 
       getBooks : function getRecipes(callback) {
         var query = new Parse.Query(Book);
         // use the find method to retrieve all public recipes
+=======
+
+
+      },
+
+      getRecipes : function getRecipes(callback) {
+        var query = new Parse.Query(Recipe);
+        // use the find method to retrieve all public recipes
+        query.find({
+          success : function(results) {
+            callback(results);
+            console.log("I've ran");
+            for (var i = 0; i < results.length; i++){
+              var object = results[i];
+              console.log(object.get('Name'));
+            }
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
+        });
+      },
+
+      discoverRecipes : function discoverRecipes(callback) {
+        var query = new Parse.Query(Recipe);
+        // use the find method to retrieve all public recipes
+        query.limit(10);
+>>>>>>> origin/Tom
         query.find({
           success : function(results) {
             callback(results);
@@ -94,8 +140,13 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
       // Get current logged in user
       getUser : function getUser() {
+<<<<<<< HEAD
         if(loggedInUser) {
           return loggedInUser;
+=======
+        if(currentUser) {
+          return currentUser;
+>>>>>>> origin/Tom
         }
       }
     
