@@ -1,5 +1,8 @@
 angular.module('WhatsCookingapp', ['WhatsCookingappServices','ngRoute'])
-.controller('LoginCtrl',LoginCtrl).controller('MainCtrl',MainCtrl);
+.controller('LoginCtrl',LoginCtrl).controller('MainCtrl',MainCtrl)
+.config(function($locationProvider) {
+  $locationProvider.html5Mode(true);
+});
 
 /* Controllers */
 
@@ -11,7 +14,8 @@ function LoginCtrl($scope, $location, ParseService) {
 	$scope.login = function() {
 		ParseService.login($scope.login_username, $scope.login_password, function(user) {
       // When service call is finished, navigate to items page
-      window.location.href = 'index.html';
+     $location.url('home.html');
+      $scope.$apply();
     });
 	}
 
@@ -19,9 +23,14 @@ function LoginCtrl($scope, $location, ParseService) {
 	$scope.signUp = function() {
 		ParseService.signUp($scope.signup_username, $scope.signup_password, function(user) {
       // When service call is finished, navigate to items page
-      window.location.href = 'login.html';
+      $location.url('login.html');
+       $scope.$apply();
     });
 	}
+
+  $scope.loggedIn = function(){
+    ParseService.loggedIn();
+  }
 }
 LoginCtrl.$inject = ['$scope', '$location', 'ParseService']
 
@@ -68,29 +77,54 @@ function MainCtrl($scope, $location, ParseService) {
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
     ParseService.addRecipe($scope.recipe_title, $scope.recipe_image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
-      window.location.href = "index.html";
+      window.location.href = "/home.html";
     });
   }
 
 
 
+  //Finds Current User
+  $scope.getUser = function(){
+    ParseService.getUser();
+  }
+
+  //Find current User Details
+  $scope.userDetails = function(){
+    ParseService.userDetails(function(results){
+      $scope.$apply(function(){
+        $scope.userDetailsItem = results;
+        var len = $scope.userDetailsItem.length;
+        console.log(len);
+      })
+    });
+  }
+
+
+  $scope.checkIfLoggedIn = function(){
+    ParseService.checkIfLoggedIn();
+  }
+
   // logs the user out and re-direct to login page
   $scope.logout = function() {
     ParseService.logout();
-    window.location.href ='/login';
+      $location.url('login.html');
+       $scope.$apply();
   }
 
   /**
    * On startup...
    */
-
+   var currentUser = $scope.currentUser;
+  console.log(currentUser);
+  $scope.userDetailsItem = [];
+  $scope.userDetails();
   $scope.discoverRecipeList = [];
   $scope.discoverRecipes();
   $scope.recipeList = [];
   $scope.getRecipes();
   $scope.myRecipes = [];
-  $scope.init();
   console.log("#Yolo");
+  $scope.checkIfLoggedIn();
 }
 MainCtrl.$inject = ['$scope', '$location', 'ParseService']
 
