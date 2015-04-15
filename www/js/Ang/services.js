@@ -6,8 +6,7 @@ angular.module('WhatsCookingappServices', ['ngResource'])
     // Initialize Parse API and objects.
     Parse.initialize("yKtcMnRhdHbiATzIbmdJX9fDHvCwP4mVKjHhzoup", "KqcToLgLrdh9nMYQYm3xYYbVhFhSDQwgysUl7gxU");
 
-    // Cache current logged in user
-    var currentUser;
+    var loggedUser;
 
     // Cache list of user's recipes
     var myRecipes = [];
@@ -21,30 +20,33 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
       // Login a user
       login : function login(username, password, callback) {
-    	  Parse.User.logIn(username, password, {
-    	    success: function(user) {
-            currentUser = Parse.User.current();
-    	      callback(user);
-            getRecipes();
+       Parse.User.logIn(username, password, {
+         success: function(user) {
+          callback(user);
+         // getRecipes();
+        loggedUser = user;
 
-    	    },
-    	    error: function(user, error) {
-    	      alert("Error: " + error.message);
-    	    }
-        });
-      },
+        },
+        error: function(user, error) {
+         alert("Error: " + error.message);
+       }
+     });
+     },
+
+     loggedIn : function loggedIn(){
+      console.log(loggedUser);
+     },
 
       // Register a user
       signUp : function signUp(username, password,callback) {
       	Parse.User.signUp(username, password,{ ACL: new Parse.ACL()}, {
-            success: function(user) {
-                currentUser = user;
-                callback(user);
-            },
+          success: function(user) {
+            callback(user);
+          },
 
-            error: function(user, error) {
-              alert("Error: " + error.message);
-            }
+          error: function(user, error) {
+            alert("Error: " + error.message);
+          }
         });
       },
 
@@ -100,7 +102,23 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       discoverRecipes : function discoverRecipes(callback) {
         var query = new Parse.Query(Recipe);
         // use the find method to retrieve all public recipes
-        query.limit(10);
+        query.limit(5);
+        query.find({
+          success : function(results) {
+            callback(results);
+          },
+          error: function(error) {
+            alert("Error: " + error.message);
+          }
+        });
+      },
+
+      //Find User details
+      userDetails : function userDetails(callback){
+        var user = Parse.User.current();
+        var Profile = Parse.Object.extend("User");
+        var query = new Parse.Query(Profile);
+        query.equalTo("User", user);
         query.find({
           success : function(results) {
             callback(results);
@@ -116,15 +134,22 @@ angular.module('WhatsCookingappServices', ['ngResource'])
         Parse.User.logOut();
       },
 
+      //checks if user is logged in
+      checkIfLoggedIn : function checkIfLoggedIn(){
+        if(loggedUser == null){
+         console.log("Its not working");
+       }
+     },
+
       // Get current logged in user
       getUser : function getUser() {
-        if(currentUser) {
-          return currentUser;
+        if(loggedUser) {
+          return loggedUser;
         }
       }
-    
+
     };
 
     // The factory function returns ParseService, which is injected into controllers.
     return ParseService;
-});
+  });
