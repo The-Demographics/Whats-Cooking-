@@ -1,6 +1,21 @@
 
 /* Services */
-
+/*
+        var imgdata;
+        var cameraimg;
+        var file;
+    // Set an event listener on the Choose File field.
+    $('#fileselect').bind("change", function(e) {
+        var files = e.target.files || e.dataTransfer.files;
+        // Our file var now holds the selected file
+        file = files[0];
+    });
+    // Set an event listener on the Choose File field.
+    var input = document.querySelector('input[type=file]');
+    input.onchange = function () {
+      file = input.files[0];
+};
+*/
 angular.module('WhatsCookingappServices', ['ngResource'])
 .factory('ParseService', function($resource){
     // Initialize Parse API and objects.
@@ -59,7 +74,7 @@ angular.module('WhatsCookingappServices', ['ngResource'])
         var Steps = [];
         Steps.push(_method);
         object.set("Name",_title);
-        //object.set("Image", img);
+        object.set("Image", _image);
         object.set("Description",_description);
         //object.set("AddedBy", currentUser);
         object.set("Difficulty",_difficulty);
@@ -69,7 +84,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
         object.set("Vegetarian",_vegetarian);
         object.save( null, {
           success: function(object) {
-            callback();
             alert("success");
           },
           error: function(error) {
@@ -87,11 +101,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
         query.find({
           success : function(results) {
             callback(results);
-            console.log("I've ran");
-            for (var i = 0; i < results.length; i++){
-              var object = results[i];
-              console.log(object.get('Name'));
-            }
           },
           error: function(error) {
             alert("Error: " + error.message);
@@ -116,9 +125,10 @@ angular.module('WhatsCookingappServices', ['ngResource'])
       //Find User details
       userDetails : function userDetails(callback){
         var user = Parse.User.current();
+        console.log("Getting user deails with ID:" + user);
         var Profile = Parse.Object.extend("User");
         var query = new Parse.Query(Profile);
-        query.equalTo("User", user);
+        query.equalTo("objectId", user);
         query.find({
           success : function(results) {
             callback(results);
@@ -126,6 +136,37 @@ angular.module('WhatsCookingappServices', ['ngResource'])
           error: function(error) {
             alert("Error: " + error.message);
           }
+        });
+      },
+
+      //Send image to web service
+      addImage : function addImage(callback){
+
+    // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
+        var serverUrl = 'https://api.parse.com/1/files/' + file.name;
+
+        $.ajax({
+            type: "POST",
+            beforeSend: function(request) {
+                request.setRequestHeader("X-Parse-Application-Id", 'yKtcMnRhdHbiATzIbmdJX9fDHvCwP4mVKjHhzoup');
+                request.setRequestHeader("X-Parse-REST-API-Key", 'edbOSElqeLfVn9pacN9YscGOXGE2M7DHqV8iBXBD');
+                request.setRequestHeader("Content-Type", file.type);
+            },
+            url: serverUrl,
+            data: file,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                imgdata = data.url;
+                imgdata = JSON.stringify(imgdata);
+                console.log(imgdata + "Is the Link");
+                console.log("Added");
+                callback(imgdata);
+            },
+            error: function(data) {
+                var obj = jQuery.parseJSON(data);
+                alert(obj.error);
+            }
         });
       },
 

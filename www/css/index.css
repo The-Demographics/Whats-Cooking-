@@ -91,6 +91,9 @@ a{
 main{
     margin-bottom: 60px;
 }
+.page{
+    margin-bottom: 60px;
+}
 footer{
     position: fixed;
     bottom: 0;
@@ -150,17 +153,6 @@ footer ul li a{
     color: #fff;
 }
 #discover-1{
-    background-image: url("../img/roastdinner.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#discover-2{
-    background-image: url("../img/hunterschicken.jpg");
-    background-size: cover;
-    background-position: center;
-}
-#discover-3{
-    background-image: url("../img/spagbol.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -207,4 +199,50 @@ footer ul li a{
     .card-content{
         overflow: auto;
     }
+}
+
+
+/* Dirty Navigation */
+
+#login{
+    display: none;
+}
+#signUp{
+    display: none;
+}
+#home{
+    display: none;
+}
+#about{
+    display: none;
+}
+#about{
+    display: none;
+}
+#addRecipe{
+    display: none;
+}
+#search{
+    display: none;
+}
+#saved{
+    display: none;
+}
+#recipe{
+    display: none;
+}
+#edit{
+    display: none;
+}
+#settings{
+    display: none;
+}
+#list{
+    display: none;
+}
+header{
+    display: none;
+}
+footer{
+    display: none;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhatsCookingapp">
 <head>
 	<meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
@@ -9,27 +9,595 @@
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
-	<title>What's Cooking? - Start</title>
-	<base href="/www/">
-</head>
-<body class="light-green lighten-5">
-
-	<main>
-		<img src="img/logo.png">
-		<div class="center-text">
-			<a class="waves-effect waves-light btn" href="login.html">Login</a>
-			<a class="waves-effect waves-light btn" href="signup.html">Sign Up</a>
-		</div>
-	</main>
-
-
-	<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
-	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/parse.js"></script>
+	<title>What's Cooking? - Start</title>
+</head>
+<body class="light-green lighten-5" ng-controller="MainCtrl">
+
+<header>
+		<nav class="light-green">
+		  <ul id="slide-out" class="side-nav">
+			<div id="menu-user-account" class="light-green">
+				<img src="img/me.png" class="circle responsive-img center-align" width="75px">
+				<h5>Welcome, <span>{{ userDetails.get('username') }} </span> </h5>
+			</div>
+			<div id="main-navigation">
+			<li><a id="toHome"><i class="mdi-action-home left small"></i>Home</a></li>
+			<li><a id="toSearch"><i class="mdi-action-search left small"></i>Search</a></li>
+			<li><a id="toSaved"><i class="mdi-action-favorite left small"></i>Saved Recipes</a></li>
+			<li><a id="toList"><i class="mdi-editor-format-list-numbered left small"></i>Shopping List</a></li>
+			<li><a id="toEdit"><i class="mdi-action-face-unlock left small"></i>Edit Profile</a></li>
+			<hr/>
+			<li><a id="toSettings"><i class="mdi-action-settings left small"></i>App Settings</a></li>
+			<li><a id="toAbout"><i class="mdi-action-info left small"></i>About App</a></li>
+			</div>
+		  </ul>
+		  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+		  <div class="center-align" id="page-title">Login</div>
+		</nav>
+	</header>
+
+<!-- START -->
+	<div class="page" id="startUp">
+		<img src="img/logo.png">
+		<div class="center-text">
+			<a class="waves-effect waves-light btn" id="toLogin">Login</a>
+			<a class="waves-effect waves-light btn" id="toSignUp">Sign Up</a>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="page" id="login">
+		<div class="row">
+			<div class="input-field col s12">
+        <input id="username-login" type="text" class="validate"  ng-model="login_username">
+        <label for="username-login">Username</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+        <input id="password-login" type="password" class="validate" ng-model="login_password">
+        <label for="password-login">Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" id="loginbtn" ng-click="login()" ng-model="login_btn">Login</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" ng-click="loggedIn()"> Who's Logged in</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="page" id="signUp">
+		<div class="row">
+			<div class="input-field col s6">
+        <input id="firstname" type="text" class="validate" ng-model="signup_firstname">
+        <label for="firstname">First Name</label>
+			</div>
+			<div class="input-field col s6">
+        <input id="lastname" type="text" class="validate" ng-model="signup_lastname">
+        <label for="lastname">Last Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+        <input id="username" type="text" class="validate" ng-model="signup_username">
+        <label for="username">Username</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+        <input id="email" type="text" class="validate" ng-model="signup_email">
+        <label for="email">Email</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+        <input id="password" type="password" class="validate" ng-model="signup_password">
+        <label for="password">Password</label>
+			</div>
+			<div class="input-field col s6">
+        <input id="password-confirm" type="password" class="validate">
+        <label for="password-confirm">Confirm Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+			<input type="number" id="age" class="validate" ng-model="signup_age">
+			<label for="age">Age</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+        <input type="checkbox" id="vegetarian" ng-model="signup_vegetarian" />
+        <label for="vegetarian">vegetarian?</label>
+			</div>
+		</div>
+		<form action="#">
+	    <div class="file-field input-field">
+	      <input class="file-path validate" type="text"/>
+	      <div class="btn">
+	        <span>File</span>
+	        <input type="file" />
+	      </div>
+	    </div>
+	  </form>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" id="signupbtn" ng-click="signUp()" ng-model="signup_btn">Sign Up</a>
+			</div>
+		</div>
+	</div>
+
+<!-- STOP -->
+
+	<div class="page" id="home">
+		<h2>Discover</h2>
+		<div class="light-green lighten-4">
+			<!-- Swiper -->
+			<div class="swiper-container" id="swiper-1">
+				<div class="swiper-wrapper">
+				
+					<!-- Swiper Slide -->
+					<div class="swiper-slide" id="discover-1"  ng-repeat="recipe in discoverRecipeList" ng-style="{'background-image':'url({{recipe.get('Image')}})'}">>
+						<div class="slider-info">
+							<div class="card grey-text text-darken-4">
+								<div class="card-content" id="discover-card-info">
+								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
+								  <p> {{recipe.get('Description')}}</p>
+								</div>
+								<div class="card-action">
+								  <a href=""><i class="mdi-action-favorite small"></i></a>
+								  <a href=""><i class="mdi-action-info small"></i></a>
+								</div>
+							 </div>
+						</div>
+					</div>
+					<!-- Swiper Slide End -->
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination" id="swiper-pagination-1"></div>
+			</div>
+		</div>
+		<h2>Saved Recipes</h2>
+		<div class="light-green lighten-4">
+			<div class="swiper-container" id="swiper-2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" id="saved-1">
+						<div class="slider-info">
+							<div class="card grey-text text-darken-4">
+								<div class="card-content" id="discover-card-info">
+								  <span class="card-title grey-text text-darken-4">Chicken Tikka</span>
+								  <p>Suculent Chicken Tikka curry. made with real spices. Serve with a naan and rice.</p>
+								</div>
+								<div class="card-action">
+								  <a id="toRecipe"><i class="mdi-action-info small"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination" id="swiper-pagination-2"></div>
+			</div>
+		</div>
+		<h2>Shopping List</h2>
+		<div class="light-green lighten-4" id="shopping-list">
+			<form id="shopping-list-form">
+				<p><input type="checkbox" />
+				<label>Eggs</label></p>
+				<p><input type="checkbox" />
+				<label>Chicken</label></p>
+				<p><input type="checkbox" />
+				<label>Milk</label></p>
+				<p><input type="checkbox" />
+				<label>Butter</label></p>
+				<div class="input-field col s12" id="item-submit">
+					<input id="shopping-list-add" type="text" class="validate">
+				</div>
+				<div class="center-text">
+					<a class="waves-effect waves-light btn" id="shopping-list-add-button">Add</a>
+			  </div>
+			</form>
+		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" ng-click="loggedIn()"> Who's Logged in</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="page" id="about">
+		<div class="row">
+			<div class="col s12">
+				<h4>Summary</h4>
+				<p>What's Cooking is an electronic cooking book. It is a great way to not only store your favourite recipes, but to also discover new ones too. Rather than having to search through a whole range of different cook books, you can simply search through our database of high quailty, user reviewed recipes at your leasure. You can even add your own!</p>
+				<p>While What's Cooking is aimed at students, anybody can use it. even your Gran!</p>
+				<h4>Development Team</h4>
+				<div class="row">
+					<div class="col s6 center-text">
+						<img src="img/me.png" class="circle responsive-img center-align">
+						<h5>Mike Linford</h5>
+						<p>Designer</p>
+					</div>
+					<div class="col s6 center-text">
+						<img src="img/tom.jpg" class="circle responsive-img center-align">
+						<h5>Tom Fyles</h5>
+						<p>Developer</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s6 center-text">
+						<img src="img/jack.jpg" class="circle responsive-img center-align">
+						<h5>Jack Cridge</h5>
+						<p>Project Manager</p>
+					</div>
+					<div class="col s6 center-text">
+						<img src="img/nath.jpg" class="circle responsive-img center-align">
+						<h5>Nathan Jones</h5>
+						<p>Content Manager</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="page" id="addRecipe">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="recipe-title" type="text" class="validate" ng-model="recipe_title">
+                <label for="recipe-title">Recipe Title</label>
+            </div>
+        </div>
+        <form action="#">
+            <div class="file-field input-field">
+                <input class="file-path validate" type="text" />
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file" id="fileselect" ng-model="recipe_image">
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="center-text col s12">
+                <a class="waves-effect waves-light btn" id="addImg" ng-click="addImage()">Add Image</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recipe-decription" class="materialize-textarea" ng-model="recipe_description"></textarea>
+                <label for="recipe-decription">Recipe Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <select ng-model="recipe_difficulty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label>Difficulty</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="recipe-time" type="text" class="validate" ng-model="recipe_preptime">
+                <label for="recipe-time">Recipe Prep and Cook Time</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="recipe-theme" type="text" class="validate" ng-model="recipe_theme">
+                <label for="recipe-theme">Recipe Theme</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recipe-ingredients" class="materialize-textarea"></textarea>
+                <label for="recipe-ingredients">Recipe ingredients</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="recipe-steps" class="materialize-textarea" ng-model="recipe_method"></textarea>
+                <label for="recipe-steps">Recipe Steps</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="checkbox" id="vegetarian" ng-model="recipe_vegetarian" />
+                <label for="vegetarian">Vegetarian Frendly?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="center-text col s12">
+                <a class="waves-effect waves-light btn" ng-click="addRecipe()" ng-model="addRecipe_btn">Add Recipe</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="page" id="search">
+		<div class="row">
+	    <div class="input-field col s7">
+	      <i class="mdi-action-search prefix"></i>
+	    	<input id="search-box" type="text" class="validate" value="Roast Dinner">
+	    	<label for="search-box">Search</label>
+	    </div>
+	    <div class="col s5">
+				  <select id="filter-by">
+				    <option value="" disabled selected>Filter By</option>
+				    <option value="1">Prep Time</option>
+				    <option value="2">Price</option>
+				    <option value="3">Ingredients</option>
+				  </select>
+	    </div>
+    </div>
+    <div class="row" id="filter-by-ingredient-list">
+	    <div class="col s12">
+	    	<ul>
+	    		<li>Chicken</li>
+	    		<li>Roast Potatoes</li>
+	    	</ul>
+	    </div>
+    </div>
+    <!-- Search Result -->
+    <div class="row" ng-repeat="recipe in recipeList">
+        <div class="col s12">
+          <div class="card">
+		        <div class="card-image waves-effect waves-block waves-light">
+		          <img class="activator" src="img/roastdinner.jpg">
+		        </div>
+		        <div class="card-content">
+		          <span class="card-title activator grey-text text-darken-4"> {{ recipe.get('Name') }}<i class="mdi-navigation-more-vert right"></i></span>
+		          	<div class="card-action">
+		              <a href=""><i class="mdi-action-favorite small"></i></a>
+		              <a href=""><i class="mdi-action-info small"></i></a>
+		            </div>
+		        </div>
+		        <div class="card-reveal">
+		          <span class="card-title grey-text text-darken-4">  {{ recipe.get('Name') }} <i class="mdi-navigation-close right"></i></span>
+		          <p>{{recipe.get('Description')}}</p>
+		        </div>
+		      </div>
+        </div>
+      </div>
+      <!-- Search Result end -->
+	</div>
+
+
+
+
+	<div class="page" id="saved">
+		<div class="row">
+	    <div class="col s12">
+				  <select id="filter-by">
+				    <option value="" disabled selected>Filter By</option>
+				    <option value="1">Prep Time</option>
+				    <option value="2">Price</option>
+				    <option value="3">Ingredients</option>
+				  </select>
+	    </div>
+    </div>
+    <div class="row" id="filter-by-ingredient-list">
+	    <div class="col s12">
+	    	<ul>
+	    		<li>Chicken</li>
+	    		<li>Roast Potatoes</li>
+	    	</ul>
+	    </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+          <div class="card">
+		        <div class="card-image waves-effect waves-block waves-light">
+		          <img class="activator" src="img/chickentikka.jpg">
+		        </div>
+		        <div class="card-content">
+		          <span class="card-title activator grey-text text-darken-4">Chicken Tikka <i class="mdi-navigation-more-vert right"></i></span>
+		          	<div class="card-action">
+		              <a href="recipe.html"><i class="mdi-action-info small"></i></a>
+		            </div>
+		        </div>
+		        <div class="card-reveal">
+		          <span class="card-title grey-text text-darken-4">Chicken Tikka <i class="mdi-navigation-close right"></i></span>
+		          <p>Suculent Chicken Tikka curry. made with real spices. Serve with a naan and rice.</p>
+		        </div>
+		      </div>
+        </div>
+      </div>
+	</div>
+
+	<div class="page" id="recipe">
+		<div class="row">
+			<div class="col s12">
+				<div class="card">
+					<div class="card-image">
+						<img src="img/chickentikka.jpg">
+						<span class="card-title">Chicken Tikka</span>
+					</div>
+					<div class="card-content" id="recipe-content">
+						<h5>Rating</h5>
+						<i class="mdi-action-stars small"></i>
+						<i class="mdi-action-stars small"></i>
+						<i class="mdi-action-stars small"></i>
+						<i class="mdi-action-stars small"></i>
+						<ul class="collapsible" data-collapsible="expandable">
+							<li>
+								<div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Ingredents</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header"><i class="mdi-maps-place"></i>Preperation Instructions</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header"><i class="mdi-social-whatshot"></i>Third</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+						</ul>
+						<h5 id="recipe-comments-title">Comments</h5>
+						<div class="row">
+							<div class="col s12">
+								<div class="card">
+			            <div class="card-content">
+			            	<img src="img/me.png" class="circle responsive-img center-align" width="75px">
+			              <span class="card-title blue-grey-text text-darken-4">Mike Linford</span>
+			              <hr/>
+			              <p>I am a very simple card. I am good at containing small bits of information.
+			              I am convenient because I require little markup to use effectively.</p>
+			            </div>
+			          </div>
+			          <div class="center-text"><a class="waves-effect waves-light btn white-text">Add Comment</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="page" id="edit">
+		<div class="row light-green lighten-4">
+			<h3>Change Profile Picture</h3>
+			<div class="col s4">
+				<img src="img/me.png" class="circle responsive-img center-align">
+			</div>
+			<div class="col s8">
+				<div class="file-field input-field">
+		      <input class="file-path validate" type="text"/>
+		      <div class="btn">
+		        <span>File</span>
+		        <input type="file" id="fileinput" />
+		      </div>
+		    </div>
+			</div>
+		</div>
+		<div class="row">
+			<h3>Edit Detials</h3>
+			<div class="row">
+				<div class="input-field col s6">
+		    	<input id="first-name" type="text" class="validate" value="Mike">
+		    	<label for="search-box">First Name</label>
+		    </div>
+		    <div class="input-field col s6">
+		    	<input id="last-name" type="text" class="validate" value="Linford">
+		    	<label for="search-box">Last Name</label>
+		    </div>
+	    </div>
+	    <div class="row">
+	    	<div class="input-field col s6">
+		    	<input id="email" type="text" class="validate" value="Me@Mike-Linford.co.uk">
+		    	<label for="email">Email</label>
+		    </div>
+		    <div class="input-field col s6">
+		    	<input id="email-confirm" type="text" class="validate">
+		    	<label for="email">Confirm Email</label>
+		    </div>
+	    </div>
+		</div>
+		<div class="row light-green lighten-4">
+			<h3>Change Password</h3>
+			<div class="row">
+				<div class="input-field col s6">
+		    	<input id="pass" type="password" class="validate">
+		    	<label for="email">Password</label>
+		    </div>
+		    <div class="input-field col s6">
+		    	<input id="pass-confirm" type="password" class="validate">
+		    	<label for="email">Confirm Password</label>
+		    </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="center-text">
+				<a class="waves-effect waves-light btn white-text">Save Changes</a>
+				<a class="waves-effect waves-light btn white-text">Reset</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="page" id="settings">
+		<div class="row">
+			<div class="col s12">
+				<h3>Accounts</h3>
+				<ul>
+					<li>Current: Mikeyspike</li>
+				</ul>
+				<a class="waves-effect waves-light btn white-text">Add Account</a>
+				<a class="waves-effect waves-light btn white-text">Remove Current Account</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page" id="list">
+		<div class="light-green lighten-4" id="shopping-list">
+			<form id="shopping-list-form">
+				<p><input type="checkbox" />
+				<label>Eggs</label></p>
+				<p><input type="checkbox" />
+				<label>Chicken</label></p>
+				<p><input type="checkbox" />
+				<label>Milk</label></p>
+				<p><input type="checkbox" />
+				<label>Butter</label></p>
+				<div class="input-field col s12" id="item-submit">
+					<input id="shopping-list-add" type="text" class="validate">
+				</div>
+				<div class="center-text">
+					<a class="waves-effect waves-light btn" id="shopping-list-add-button">Add</a>
+			  </div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+
+	<footer class="light-green">
+		<ul>
+			<li><a href="search.html"><i class="mdi-action-search"></i></a></li>
+			<li><a href="saved.html"><i class="mdi-action-favorite"></i></a></li>
+			<li><a href="list.html"><i class="mdi-editor-format-list-numbered"></i></a></li>
+			<li><a href="edit.html"><i class="mdi-action-face-unlock"></i></a></li>
+		</ul>
+	</footer>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
+	<script src="js/Ang/app.js"></script>
+  	<script src="js/Ang/services.js"></script>
+	<!-- <script type="text/javascript" src="cordova.js"></script> -->
 </body>
 </html>
 

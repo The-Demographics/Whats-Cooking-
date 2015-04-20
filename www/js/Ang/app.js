@@ -1,45 +1,48 @@
-angular.module('WhatsCookingapp', ['WhatsCookingappServices','ngRoute'])
-.controller('LoginCtrl',LoginCtrl).controller('MainCtrl',MainCtrl)
-.config(function($locationProvider) {
-  $locationProvider.html5Mode(true);
-});
+angular.module('WhatsCookingapp', ['WhatsCookingappServices'])
+.controller('MainCtrl',MainCtrl)
+
 
 /* Controllers */
 
-/**
- * Login controller for the app
- */
-function LoginCtrl($scope, $location, ParseService) {
-  // Perform user login using back-end service
-	$scope.login = function() {
-		ParseService.login($scope.login_username, $scope.login_password, function(user) {
-      // When service call is finished, navigate to items page
-     $location.url('home.html');
-      $scope.$apply();
-    });
-	}
-
-  // Perform user signup using back-end service
-	$scope.signUp = function() {
-		ParseService.signUp($scope.signup_username, $scope.signup_password, function(user) {
-      // When service call is finished, navigate to items page
-      $location.url('login.html');
-       $scope.$apply();
-    });
-	}
-
-  $scope.loggedIn = function(){
-    ParseService.loggedIn();
-  }
-}
-LoginCtrl.$inject = ['$scope', '$location', 'ParseService']
 
 /**
  * Main controller for the app
  */
-function MainCtrl($scope, $location, ParseService) {
+function MainCtrl($scope, $timeout, $location, ParseService) {
   $scope.init = function() {
     $scope.user = ParseService.getUser();
+  }
+
+  $scope.login = function() {
+    ParseService.login($scope.login_username, $scope.login_password, function(user) {
+      // When service call is finished, navigate to items page
+      $('header').css('display','inline');
+      $('footer').css('display','inline');
+      $('.page').css('display','none');
+      $('#home').css('display','inline');
+      })
+    $timeout( function(){
+      ParseService.userDetails(function(results){
+      $scope.$apply(function(){
+        $scope.userDetails = results;
+        var len = $scope.userDetails.length;
+        console.log("This should equel one ... " +len);
+      })
+    })
+    }, 500);
+  }
+
+  // Perform user signup using back-end service
+  $scope.signUp = function() {
+    ParseService.signUp($scope.signup_username, $scope.signup_password, function(user) {
+      // When service call is finished, navigate to items page
+      $('.page').css('display','none');
+      $('#login').css('display','inline');
+    });
+  }
+
+  $scope.loggedIn = function(){
+    ParseService.loggedIn();
   }
 
   // Fetch the list of Recipes from the backend service
@@ -49,6 +52,7 @@ function MainCtrl($scope, $location, ParseService) {
         $scope.recipeList = results;
         var len = $scope.recipeList.length;
         console.log(len);
+
       });
     });
   }
@@ -76,8 +80,7 @@ function MainCtrl($scope, $location, ParseService) {
 
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
-    ParseService.addRecipe($scope.recipe_title, $scope.recipe_image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
-      window.location.href = "/home.html";
+    ParseService.addRecipe($scope.recipe_title,$scope.image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
     });
   }
 
@@ -92,11 +95,19 @@ function MainCtrl($scope, $location, ParseService) {
   $scope.userDetails = function(){
     ParseService.userDetails(function(results){
       $scope.$apply(function(){
-        $scope.userDetailsItem = results;
-        var len = $scope.userDetailsItem.length;
-        console.log(len);
+        $scope.userDetails = results;
       })
     });
+  }
+
+  //adds image to web serive
+  $scope.addImage = function(){
+    ParseService.addImage(function(results){
+      $scope.$apply(function(){
+        $scope.image = results;
+        console.log("The scope image is" + $scope.image);
+      })
+    })
   }
 
 
@@ -107,17 +118,17 @@ function MainCtrl($scope, $location, ParseService) {
   // logs the user out and re-direct to login page
   $scope.logout = function() {
     ParseService.logout();
-      $location.url('login.html');
-       $scope.$apply();
+    $('header').css('display','inline');
+    $('footer').css('display','inline');
+    $('.page').css('display','none');
+    $('#startUp').css('display','none');
   }
 
   /**
    * On startup...
    */
-   var currentUser = $scope.currentUser;
-  console.log(currentUser);
-  $scope.userDetailsItem = [];
-  $scope.userDetails();
+
+  $scope.userDetails = [];
   $scope.discoverRecipeList = [];
   $scope.discoverRecipes();
   $scope.recipeList = [];
@@ -125,6 +136,8 @@ function MainCtrl($scope, $location, ParseService) {
   $scope.myRecipes = [];
   console.log("#Yolo");
   $scope.checkIfLoggedIn();
+  $scope.image;
 }
-MainCtrl.$inject = ['$scope', '$location', 'ParseService']
+MainCtrl.$inject = ['$scope', '$timeout','$location', 'ParseService']
+
 

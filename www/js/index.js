@@ -1,4 +1,49 @@
 $(document).ready(function () {
+
+    $('#toHome').click(function(){
+        $('.page').css('display','none');
+        $('#home').css('display','inline');
+    });
+    $('#toAbout').click(function(){
+        $('.page').css('display','none');
+        $('#about').css('display','inline');
+    });
+    $('#toSearch').click(function(){
+        $('.page').css('display','none');
+        $('#search').css('display','inline');
+    });
+    $('#toSaved').click(function(){
+        $('.page').css('display','none');
+        $('#saved').css('display','inline');
+    });
+    $('#toEdit').click(function(){
+        $('.page').css('display','none');
+        $('#edit').css('display','inline');
+    });
+    $('#toSettings').click(function(){
+        $('.page').css('display','none');
+        $('#settings').css('display','inline');
+    });
+    $('#toList').click(function(){
+        $('.page').css('display','none');
+        $('#list').css('display','inline');
+    });
+    $('#toLogin').click(function(){
+        $('.page').css('display','none');
+        $('#startUp').css('display','none');
+        $('#login').css('display','inline');
+    });
+
+    $('#toSignUp').click(function(){
+        $('.page').css('display','none');
+        $('#startUp').css('display','none');
+        $('#signUp').css('display','inline');
+    });
+    $('#toRecipe').click(function(){
+        $('.page').css('display','none');
+        $('#recipe').css('display','inline');
+    });
+    
     $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
     $('select').material_select();
     $('.collapsible').collapsible({
@@ -163,3 +208,5 @@ function imgToParse(file){
             }
         });
 }
+
+

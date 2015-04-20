@@ -10,9 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<title>What's Cooking? - Home</title>
-	<base href="/www/">
+	<base href="http://www.tom-fyles.com/test3/deeper/evendeeper/">
 </head>
-<body class="light-green lighten-5" ng-controller="MainCtrl">
+<body class="light-green lighten-5">
 
 	<header>
 		<nav class="light-green">
@@ -38,7 +38,7 @@
 		</nav>
 	</header>
 
-	<main>
+	<main ng-controller="MainCtrl">
 		<h2>Discover</h2>
 		<div class="light-green lighten-4">
 			<!-- Swiper -->
@@ -47,7 +47,7 @@
 				
 					<!-- Swiper Slide -->
 					<div class="swiper-slide" id="discover-1" ng-repeat="recipe in discoverRecipeList">
-						<div class="slider-info" style="background-image: url({{recipe.get('Image')}})">
+						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
 								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
@@ -118,16 +118,16 @@
 		</ul>
 	</footer>
 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+	<script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
+	<script src="js/Ang/app.js"></script>
+  	<script src="js/Ang/services.js"></script>
+	<!-- <script type="text/javascript" src="cordova.js"></script> -->
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
-    <script type="text/javascript" src="js/parse-1.3.4.min.js"></script>
-    <script src="js/Ang/app.js"></script>
-    <script src="js/Ang/services.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/swiper.jquery.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
