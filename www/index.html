@@ -217,6 +217,11 @@
 				<a class="waves-effect waves-light btn" ng-click="loggedIn()"> Who's Logged in</a>
 			</div>
 		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" id="toAddRecipe"> Add recipe temp</a>
+			</div>
+		</div>
 	</div>
 
 
@@ -300,7 +305,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <input id="recipe-time" type="text" class="validate" ng-model="recipe_preptime">
-                <label for="recipe-time">Recipe Prep and Cook Time</label>
+                <label for="recipe-time">Recipe Prep and Cook Time (Minutes)</label>
             </div>
         </div>
         <div class="row">
@@ -366,8 +371,8 @@
     <div class="row" ng-repeat="recipe in recipeList">
         <div class="col s12">
           <div class="card">
-		        <div class="card-image waves-effect waves-block waves-light">
-		          <img class="activator" src="img/roastdinner.jpg">
+		        <div class="card-image waves-effect waves-block waves-light" >
+		          <img class="activator" ng-src="{{ recipe.get('Image') }} " >
 		        </div>
 		        <div class="card-content">
 		          <span class="card-title activator grey-text text-darken-4"> {{ recipe.get('Name') }}<i class="mdi-navigation-more-vert right"></i></span>

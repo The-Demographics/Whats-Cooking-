@@ -1,6 +1,5 @@
 
 /* Services */
-/*
         var imgdata;
         var cameraimg;
         var file;
@@ -15,7 +14,6 @@
     input.onchange = function () {
       file = input.files[0];
 };
-*/
 angular.module('WhatsCookingappServices', ['ngResource'])
 .factory('ParseService', function($resource){
     // Initialize Parse API and objects.

@@ -43,7 +43,11 @@ $(document).ready(function () {
         $('.page').css('display','none');
         $('#recipe').css('display','inline');
     });
-    
+    $('#toAddRecipe').click(function(){
+        $('.page').css('display','none');
+        $('#addRecipe').css('display','inline');
+    });
+
     $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 100});
     $('select').material_select();
     $('.collapsible').collapsible({
@@ -90,7 +94,7 @@ $(document).ready(function () {
         };
     });
 });
-
+/*
 var imgdata;
 var cameraimg;
 var file;
@@ -210,3 +214,4 @@ function imgToParse(file){
 }
 
 
+*/
