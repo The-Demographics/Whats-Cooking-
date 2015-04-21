@@ -151,12 +151,12 @@
 				<div class="swiper-wrapper">
 				
 					<!-- Swiper Slide -->
-					<div class="swiper-slide" id="discover-1"  ng-repeat="recipe in discoverRecipeList" ng-style="{'background-image':'url({{recipe.get('Image')}})'}">>
+					<div class="swiper-slide" id="discover-1"  ng-repeat="recipe in discoverRecipeList" ng-style="{'background-image':'url({{recipe.get('Image')}})'}">
 						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
 								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
-								  <p> {{recipe.get('Description')}}</p>
+								  <p></p>
 								</div>
 								<div class="card-action">
 								  <a href=""><i class="mdi-action-favorite small"></i></a>
@@ -175,12 +175,12 @@
 		<div class="light-green lighten-4">
 			<div class="swiper-container" id="swiper-2">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" id="saved-1">
+					<div class="swiper-slide" id="saved-1" ng-repeat="recipe in myRecipes" ng-style="{'background-image':'url({{recipe.get('Image')}})'}">
 						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
-								  <span class="card-title grey-text text-darken-4">Chicken Tikka</span>
-								  <p>Suculent Chicken Tikka curry. made with real spices. Serve with a naan and rice.</p>
+								  <span class="card-title grey-text text-darken-4">{{ recipe.get('Name') }}</span>
+								  <p>{{recipe.get('Description')}}</p>
 								</div>
 								<div class="card-action">
 								  <a id="toRecipe"><i class="mdi-action-info small"></i></a>
@@ -220,6 +220,11 @@
 		<div class="row">
 			<div class="center-text col s12">
 				<a class="waves-effect waves-light btn" id="toAddRecipe"> Add recipe temp</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="center-text col s12">
+				<a class="waves-effect waves-light btn" ng-click="myRecipeLength()"> MRL</a>
 			</div>
 		</div>
 	</div>
@@ -347,18 +352,29 @@
 		<div class="row">
 	    <div class="input-field col s7">
 	      <i class="mdi-action-search prefix"></i>
-	    	<input id="search-box" type="text" class="validate" value="Roast Dinner">
+	    	<input id="search-box" type="text" class="validate" value="Roast Dinner" ng-model="search_term">
 	    	<label for="search-box">Search</label>
 	    </div>
 	    <div class="col s5">
-				  <select id="filter-by">
-				    <option value="" disabled selected>Filter By</option>
+				  <select id="filter-by" ng-model="search_method">
+				    <option value="void" disabled selected>Filter By</option>
 				    <option value="1">Prep Time</option>
-				    <option value="2">Price</option>
+				    <option value="2">Difficulty</option>
 				    <option value="3">Ingredients</option>
 				  </select>
 	    </div>
     </div>
+    <div class="row">
+            <div class="center-text col s3">
+                <a class="waves-effect waves-light btn" ng-click="searchPrep()">Search Prep</a>
+            </div>
+            <div class="center-text col s3">
+                <a class="waves-effect waves-light btn" ng-click="searchDifficulty()">Search Difficulty</a>
+            </div>
+            <div class="center-text col s12">
+                <a class="waves-effect waves-light btn" ng-click="searchIng()">Search Ingredients</a>
+            </div>
+        </div>
     <div class="row" id="filter-by-ingredient-list">
 	    <div class="col s12">
 	    	<ul>
@@ -368,22 +384,25 @@
 	    </div>
     </div>
     <!-- Search Result -->
-    <div class="row" ng-repeat="recipe in recipeList">
+    <div class="row" ng-repeat="recipe in resultsList">
         <div class="col s12">
           <div class="card">
-		        <div class="card-image waves-effect waves-block waves-light" >
-		          <img class="activator" ng-src="{{ recipe.get('Image') }} " >
+		        <div class="card-image waves-effect waves-block waves-light" ng-style="{'background-image':'url({{recipe.get('Image')}})'}" >
+		          <div class="activator" ng-style="{'background-image':'url({{recipe.get('Image')}})'}" ></div>
 		        </div>
 		        <div class="card-content">
 		          <span class="card-title activator grey-text text-darken-4"> {{ recipe.get('Name') }}<i class="mdi-navigation-more-vert right"></i></span>
 		          	<div class="card-action">
-		              <a href=""><i class="mdi-action-favorite small"></i></a>
+		              <a href="" ng-click="addToBook()"><i class="mdi-action-favorite small"></i></a>
 		              <a href=""><i class="mdi-action-info small"></i></a>
 		            </div>
 		        </div>
 		        <div class="card-reveal">
 		          <span class="card-title grey-text text-darken-4">  {{ recipe.get('Name') }} <i class="mdi-navigation-close right"></i></span>
 		          <p>{{recipe.get('Description')}}</p>
+		          <!-- <div class="center-text col s12">
+                	<button class="waves-effect waves-light btn" ng-click="addToBook()">Add to recipe list</button>
+            	  </div> -->
 		        </div>
 		      </div>
         </div>
@@ -405,11 +424,11 @@
 				  </select>
 	    </div>
     </div>
+    <div ng-repeat="recipe in myRecipes">
     <div class="row" id="filter-by-ingredient-list">
 	    <div class="col s12">
 	    	<ul>
-	    		<li>Chicken</li>
-	    		<li>Roast Potatoes</li>
+	    		<li>{{recipe.get('Name')}}</li>
 	    	</ul>
 	    </div>
     </div>
@@ -420,18 +439,19 @@
 		          <img class="activator" src="img/chickentikka.jpg">
 		        </div>
 		        <div class="card-content">
-		          <span class="card-title activator grey-text text-darken-4">Chicken Tikka <i class="mdi-navigation-more-vert right"></i></span>
+		          <span class="card-title activator grey-text text-darken-4">{{recipe.get('Name')}} <i class="mdi-navigation-more-vert right"></i></span>
 		          	<div class="card-action">
 		              <a href="recipe.html"><i class="mdi-action-info small"></i></a>
 		            </div>
 		        </div>
 		        <div class="card-reveal">
-		          <span class="card-title grey-text text-darken-4">Chicken Tikka <i class="mdi-navigation-close right"></i></span>
-		          <p>Suculent Chicken Tikka curry. made with real spices. Serve with a naan and rice.</p>
+		          <span class="card-title grey-text text-darken-4">{{recipe.get('Name')}} <i class="mdi-navigation-close right"></i></span>
+		          <p>{{recipe.get('Description')}}</p>
 		        </div>
 		      </div>
         </div>
       </div>
+      <div>
 	</div>
 
 	<div class="page" id="recipe">
@@ -556,6 +576,7 @@
 				</ul>
 				<a class="waves-effect waves-light btn white-text">Add Account</a>
 				<a class="waves-effect waves-light btn white-text">Remove Current Account</a>
+				<a class="waves-effect waves-light btn white-text" ng-click="logout()">Logout</a>
 			</div>
 		</div>
 	</div>

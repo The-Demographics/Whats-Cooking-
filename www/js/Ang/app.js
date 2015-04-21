@@ -27,8 +27,15 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.userDetails = results;
         var len = $scope.userDetails.length;
         console.log("This should equel one ... " +len);
-      })
-    })
+        })
+      });
+      ParseService.getMyRecipeBook(function(results){
+      $scope.$apply(function() {
+        $scope.myRecipes = results;
+        var len = $scope.myRecipes.length;
+        console.log(len);
+     })
+    });
     }, 500);
   }
 
@@ -84,6 +91,75 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
     });
   }
 
+  /*$scope.search = function(){
+    ParseService.search($scope.search_term, $scope.search_method,function(results) {
+      $scope.$apply(function() {
+        $scope.resultsList = results;
+        var len = $scope.resultsList.length;
+        console.log(len);
+    });
+    });
+  } */
+
+  $scope.searchPrep = function(){
+    console.log("Trying prep search");
+    ParseService.searchPrep($scope.search_term, function(results){
+      $scope.$apply(function() {
+        $scope.resultsList = results;
+        var len = $scope.resultsList.length;
+        console.log(len);
+        console.log("Trying prep search");
+    });
+    })
+  }
+
+  $scope.searchDifficulty = function(){
+    console.log("Trying Difficulty search");
+    ParseService.searchDifficulty($scope.search_term, function(results){
+      $scope.$apply(function() {
+        $scope.resultsList = results;
+        console.log("Trying Dif search");
+        var len = $scope.resultsList.length;
+        console.log(len);
+    });
+    })
+  }
+
+  $scope.searchIng = function(){
+    console.log("Trying Ing search");
+    ParseService.searchIng($scope.search_term, function(results){
+      $scope.$apply(function() {
+        console.log("Trying Ing search");
+        $scope.resultsList = results;
+        var len = $scope.resultsList.length;
+        console.log(len);
+    });
+    })
+  }
+
+  $scope.getMyRecipeBook = function(){
+    console.log("Fetching recipe book");
+    ParseService.getMyRecipeBook(function(results){
+      $scope.$apply(function() {
+        $scope.myRecipes = results;
+        var len = $scope.myRecipes.length;
+        console.log(len);
+    });
+    })
+  }
+
+  $scope.myRecipeLength = function(){
+     var len = $scope.myRecipes.length;
+     console.log(len);
+  }
+
+  $scope.addToBook = function(){
+    var name = this.recipe.get('Name');
+    console.log(name);
+    ParseService.addToBook(name, function(){
+    });    
+  }
+
 
 
   //Finds Current User
@@ -118,10 +194,10 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   // logs the user out and re-direct to login page
   $scope.logout = function() {
     ParseService.logout();
-    $('header').css('display','inline');
-    $('footer').css('display','inline');
+    $('header').css('display','none');
+    $('footer').css('display','none');
     $('.page').css('display','none');
-    $('#startUp').css('display','none');
+    $('#startUp').css('display','inline');
   }
 
   /**
@@ -130,6 +206,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
 
   $scope.userDetails = [];
   $scope.discoverRecipeList = [];
+  $scope.resultsList = [];
   $scope.discoverRecipes();
   $scope.recipeList = [];
   $scope.getRecipes();
