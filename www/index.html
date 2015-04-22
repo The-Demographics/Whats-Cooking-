@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/Swiper.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<title>What's Cooking? - Start</title>
 </head>
@@ -21,7 +22,7 @@
 		<nav class="light-green">
 		  <ul id="slide-out" class="side-nav">
 			<div id="menu-user-account" class="light-green">
-				<img src="img/me.png" class="circle responsive-img center-align" width="75px">
+				<img ng-src="{{ userDetails.get('ProfilePic') }}" class="circle responsive-img center-align" width="75px">
 				<h5>Welcome, <span>{{ userDetails.get('username') }} </span> </h5>
 			</div>
 			<div id="main-navigation">
@@ -109,7 +110,7 @@
         <label for="password">Password</label>
 			</div>
 			<div class="input-field col s6">
-        <input id="password-confirm" type="password" class="validate">
+        <input id="password-confirm" type="password" class="validate" ng-model="signup_confirmpassword">
         <label for="password-confirm">Confirm Password</label>
 			</div>
 		</div>
@@ -130,9 +131,14 @@
 	      <input class="file-path validate" type="text"/>
 	      <div class="btn">
 	        <span>File</span>
-	        <input type="file" />
+	        <input type="file" id="profilefileselect" ng-model="profile_image">
 	      </div>
 	    </div>
+	    <div class="row">
+            <div class="center-text col s12">
+                <a class="waves-effect waves-light btn" id="addImg" ng-click="addProfilePic()">Add Image</a>
+            </div>
+        </div>
 	  </form>
 		<div class="row">
 			<div class="center-text col s12">
@@ -156,7 +162,7 @@
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
 								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
-								  <p></p>
+								  <p>{{ recipe.get('Description') }}</p>
 								</div>
 								<div class="card-action">
 								  <a href=""><i class="mdi-action-favorite small"></i></a>
@@ -179,8 +185,8 @@
 						<div class="slider-info">
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
-								  <span class="card-title grey-text text-darken-4">{{ recipe.get('Name') }}</span>
-								  <p>{{recipe.get('Description')}}</p>
+								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
+								  <!-- <p> {{ recipe.get('Description') }}</p> -->
 								</div>
 								<div class="card-action">
 								  <a id="toRecipe"><i class="mdi-action-info small"></i></a>
@@ -193,30 +199,6 @@
 				<div class="swiper-pagination" id="swiper-pagination-2"></div>
 			</div>
 		</div>
-		<h2>Shopping List</h2>
-		<div class="light-green lighten-4" id="shopping-list">
-			<form id="shopping-list-form">
-				<p><input type="checkbox" />
-				<label>Eggs</label></p>
-				<p><input type="checkbox" />
-				<label>Chicken</label></p>
-				<p><input type="checkbox" />
-				<label>Milk</label></p>
-				<p><input type="checkbox" />
-				<label>Butter</label></p>
-				<div class="input-field col s12" id="item-submit">
-					<input id="shopping-list-add" type="text" class="validate">
-				</div>
-				<div class="center-text">
-					<a class="waves-effect waves-light btn" id="shopping-list-add-button">Add</a>
-			  </div>
-			</form>
-		</div>
-		<div class="row">
-			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" ng-click="loggedIn()"> Who's Logged in</a>
-			</div>
-		</div>
 		<div class="row">
 			<div class="center-text col s12">
 				<a class="waves-effect waves-light btn" id="toAddRecipe"> Add recipe temp</a>
@@ -224,7 +206,7 @@
 		</div>
 		<div class="row">
 			<div class="center-text col s12">
-				<a class="waves-effect waves-light btn" ng-click="myRecipeLength()"> MRL</a>
+				<a class="waves-effect waves-light btn" ng-click="logout()"> Logout</a>
 			</div>
 		</div>
 	</div>
@@ -321,7 +303,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="recipe-ingredients" class="materialize-textarea"></textarea>
+                <textarea id="recipe-ingredients" class="materialize-textarea" ng-model="recipe_ing"></textarea>
                 <label for="recipe-ingredients">Recipe ingredients</label>
             </div>
         </div>
@@ -439,7 +421,7 @@
 		          <img class="activator" src="img/chickentikka.jpg">
 		        </div>
 		        <div class="card-content">
-		          <span class="card-title activator grey-text text-darken-4">{{recipe.get('Name')}} <i class="mdi-navigation-more-vert right"></i></span>
+		          <span class="card-title activator grey-text text-darken-4">{{recipe.Name}} <i class="mdi-navigation-more-vert right"></i></span>
 		          	<div class="card-action">
 		              <a href="recipe.html"><i class="mdi-action-info small"></i></a>
 		            </div>
@@ -451,7 +433,7 @@
 		      </div>
         </div>
       </div>
-      <div>
+      </div>
 	</div>
 
 	<div class="page" id="recipe">

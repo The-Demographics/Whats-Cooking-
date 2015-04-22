@@ -14,6 +14,8 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   }
 
   $scope.login = function() {
+    window.resizeBy(1, 1);
+    console.log("Logging in");
     ParseService.login($scope.login_username, $scope.login_password, function(user) {
       // When service call is finished, navigate to items page
       $('header').css('display','inline');
@@ -25,8 +27,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
       ParseService.userDetails(function(results){
       $scope.$apply(function(){
         $scope.userDetails = results;
-        var len = $scope.userDetails.length;
-        console.log("This should equel one ... " +len);
+        console.log("Current user" + $scope.userDetails);
         })
       });
       ParseService.getMyRecipeBook(function(results){
@@ -34,14 +35,37 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.myRecipes = results;
         var len = $scope.myRecipes.length;
         console.log(len);
+        console.log($scope.myRecipes);
      })
     });
+      $timeout(function() {
+                var swiper = new Swiper('#swiper-1', {
+            pagination: '#swiper-pagination-1',
+            paginationClickable: true,
+            loop: true,
+            slidesPerView: 1
+        });
+    var swiper = new Swiper('#swiper-2', {
+            pagination: '#swiper-pagination-2',
+            paginationClickable: true,
+            loop: true,
+            slidesPerView: 1
+        });
+    var swiper = new Swiper('#swiper-3', {
+            pagination: '#swiper-pagination-3',
+            paginationClickable: true,
+            loop: true,
+            slidesPerView: 1
+        });
+
+  }, 100);
     }, 500);
-  }
+}
+
 
   // Perform user signup using back-end service
   $scope.signUp = function() {
-    ParseService.signUp($scope.signup_username, $scope.signup_password, function(user) {
+    ParseService.signUp($scope.signup_firstname, $scope.signup_lastname,$scope.signup_username, $scope.signup_email, $scope.signup_password, $scope.signup_confirmpassword, $scope.signup_age, $scope.profilePic, function(user) {
       // When service call is finished, navigate to items page
       $('.page').css('display','none');
       $('#login').css('display','inline');
@@ -59,6 +83,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.recipeList = results;
         var len = $scope.recipeList.length;
         console.log(len);
+        console.log($scope.recipeList);
 
       });
     });
@@ -82,13 +107,29 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.myRecipes = results;
       })
     });
+    /*$timeout( function(){
+      ParseService.getBook($scope.myRecipes, function(results){
+        $scope.$apply(function() {
+          $scope.myRecipes = results;
+      })
+      })
+    }, 200);*/
   }
 
 
   // Add a new Recipe record to Parse backend service
   $scope.addRecipe = function() {
-    ParseService.addRecipe($scope.recipe_title,$scope.image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_method, $scope.recipe_vegetarian, function() {
+    ParseService.addRecipe($scope.recipe_title,$scope.image, $scope.recipe_description, $scope.recipe_difficulty, $scope.recipe_preptime, $scope.recipe_theme, $scope.recipe_ing, $scope.recipe_method, $scope.recipe_vegetarian, function() {
     });
+    $timeout( function(){
+      ParseService.getRecipes(function(results) {
+      $scope.$apply(function() {
+        $scope.recipeList = results;
+        var len = $scope.recipeList.length;
+        console.log(len);
+      });
+    });
+    }, 500);
   }
 
   /*$scope.search = function(){
@@ -144,6 +185,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.myRecipes = results;
         var len = $scope.myRecipes.length;
         console.log(len);
+        console.log($scope.myRecipes);
     });
     })
   }
@@ -187,6 +229,18 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   }
 
 
+  //adds image to web serive
+  $scope.addProfilePic = function(){
+    ParseService.addProfilePic(function(results){
+      $scope.$apply(function(){
+        $scope.profilePic = results;
+        console.log("The scope image is" + $scope.profilePic);
+      })
+    })
+  }
+
+
+
   $scope.checkIfLoggedIn = function(){
     ParseService.checkIfLoggedIn();
   }
@@ -204,16 +258,16 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
    * On startup...
    */
 
-  $scope.userDetails = [];
+  $scope.myRecipes = [];
+  $scope.userDetails;
   $scope.discoverRecipeList = [];
   $scope.resultsList = [];
   $scope.discoverRecipes();
   $scope.recipeList = [];
   $scope.getRecipes();
-  $scope.myRecipes = [];
   console.log("#Yolo");
-  $scope.checkIfLoggedIn();
   $scope.image;
+  $scope.profilePic;
 }
 MainCtrl.$inject = ['$scope', '$timeout','$location', 'ParseService']
 
