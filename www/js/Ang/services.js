@@ -279,7 +279,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
               query.first({
                 success: function(user){
                   var recipeList = user.get('recipeList');
-                 // for (var i = 0; i < recipeList.length; i++){
                     var query2 = new Parse.Query(Recipe);
                     query2.containedIn("Name", recipeList);
                     query2.find({
@@ -290,7 +289,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                         alert("Error: " + error.message);
                     }
                 });
-              //   }
                 
                 }
               })

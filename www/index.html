@@ -22,7 +22,7 @@
 		<nav class="light-green">
 		  <ul id="slide-out" class="side-nav">
 			<div id="menu-user-account" class="light-green">
-				<img ng-src="{{ userDetails.get('ProfilePic') }}" class="circle responsive-img center-align" width="75px">
+				<img src=""  class="circle responsive-img center-align" width="75px" ng-style="{'background-image':'url({{recipe.get('Image')}})'}">
 				<h5>Welcome, <span>{{ userDetails.get('username') }} </span> </h5>
 			</div>
 			<div id="main-navigation">
@@ -165,8 +165,8 @@
 								  <p>{{ recipe.get('Description') }}</p>
 								</div>
 								<div class="card-action">
-								  <a href=""><i class="mdi-action-favorite small"></i></a>
-								  <a href=""><i class="mdi-action-info small"></i></a>
+								  <a ng-click="addToBook()"><i class="mdi-action-favorite small"></i></a>
+								  <a ng-click="viewRecipe()"><i class="mdi-action-info small"></i></a>
 								</div>
 							 </div>
 						</div>
@@ -186,10 +186,10 @@
 							<div class="card grey-text text-darken-4">
 								<div class="card-content" id="discover-card-info">
 								  <span class="card-title grey-text text-darken-4"> {{ recipe.get('Name') }}</span>
-								  <!-- <p> {{ recipe.get('Description') }}</p> -->
+								    <p> {{ recipe.get('Description') }}</p>
 								</div>
 								<div class="card-action">
-								  <a id="toRecipe"><i class="mdi-action-info small"></i></a>
+								  <a ng-click="viewRecipe()"><i class="mdi-action-info small"></i></a>
 								</div>
 							</div>
 						</div>
@@ -347,24 +347,10 @@
 	    </div>
     </div>
     <div class="row">
-            <div class="center-text col s3">
-                <a class="waves-effect waves-light btn" ng-click="searchPrep()">Search Prep</a>
-            </div>
-            <div class="center-text col s3">
-                <a class="waves-effect waves-light btn" ng-click="searchDifficulty()">Search Difficulty</a>
-            </div>
             <div class="center-text col s12">
-                <a class="waves-effect waves-light btn" ng-click="searchIng()">Search Ingredients</a>
+                <a class="waves-effect waves-light btn" ng-click="search()">Search</a>
             </div>
         </div>
-    <div class="row" id="filter-by-ingredient-list">
-	    <div class="col s12">
-	    	<ul>
-	    		<li>Chicken</li>
-	    		<li>Roast Potatoes</li>
-	    	</ul>
-	    </div>
-    </div>
     <!-- Search Result -->
     <div class="row" ng-repeat="recipe in resultsList">
         <div class="col s12">
@@ -376,7 +362,7 @@
 		          <span class="card-title activator grey-text text-darken-4"> {{ recipe.get('Name') }}<i class="mdi-navigation-more-vert right"></i></span>
 		          	<div class="card-action">
 		              <a href="" ng-click="addToBook()"><i class="mdi-action-favorite small"></i></a>
-		              <a href=""><i class="mdi-action-info small"></i></a>
+		              <a href="" ng-click="viewRecipe()"><i class="mdi-action-info small"></i></a>
 		            </div>
 		        </div>
 		        <div class="card-reveal">
@@ -442,7 +428,7 @@
 				<div class="card">
 					<div class="card-image">
 						<img src="img/chickentikka.jpg">
-						<span class="card-title">Chicken Tikka</span>
+						<span class="card-title">{{recipeName}}</span>
 					</div>
 					<div class="card-content" id="recipe-content">
 						<h5>Rating</h5>

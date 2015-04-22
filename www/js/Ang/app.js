@@ -132,15 +132,43 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
     }, 500);
   }
 
-  /*$scope.search = function(){
-    ParseService.search($scope.search_term, $scope.search_method,function(results) {
+  $scope.search = function(){
+    var term = $scope.search_term;
+    var type = $scope.search_method;
+
+    if (type == 1){
+      ParseService.searchPrep($scope.search_term, function(results){
       $scope.$apply(function() {
         $scope.resultsList = results;
         var len = $scope.resultsList.length;
         console.log(len);
+        console.log("Trying prep search");
     });
+    })
+    } else if (type == 2){
+      ParseService.searchDifficulty($scope.search_term, function(results){
+      $scope.$apply(function() {
+        $scope.resultsList = results;
+        console.log("Trying Dif search");
+        var len = $scope.resultsList.length;
+        console.log(len);
     });
-  } */
+    })
+  } else if (type == 3){
+      ParseService.searchIng($scope.search_term, function(results){
+      $scope.$apply(function() {
+        console.log("Trying Ing search");
+        $scope.resultsList = results;
+        var len = $scope.resultsList.length;
+        console.log(len);
+    });
+    })
+  } else {
+    alert("Error");
+  }
+
+}
+
 
   $scope.searchPrep = function(){
     console.log("Trying prep search");
@@ -200,6 +228,13 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
     console.log(name);
     ParseService.addToBook(name, function(){
     });    
+  }
+
+  $scope.viewRecipe = function(){
+    var name = this.recipe.get('Name');
+    $scope.recipeName = name;
+    $('.page').css('display','none');
+    $('#recipe').css('display','inline');
   }
 
 
@@ -268,6 +303,10 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   console.log("#Yolo");
   $scope.image;
   $scope.profilePic;
+
+  //For recipe page
+  $scope.recipeName;
+
 }
 MainCtrl.$inject = ['$scope', '$timeout','$location', 'ParseService']
 
