@@ -59,7 +59,8 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
                         },
                         error: function(user, error) {
-                            alert("Error: " + error.message);
+                            //alert("Error: " + error.message);
+                            Materialize.toast("Error: " + error.message , 4000);
                         }
                     });
                 },
@@ -86,11 +87,11 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
                         user.signUp(null, {
                             success: function(user) {
-                                alert("Thank You for signing up");
+                                Materialize.toast("Thank you for signing up ", 2000);
                             },
                             error: function(user, error) {
                                 // Show the error message somewhere and let the user try again.
-                                alert("Error: " + error.code + " " + error.message);
+                                Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                             }
                         });
                     } else {
@@ -122,10 +123,11 @@ angular.module('WhatsCookingappServices', ['ngResource'])
 
                     object.save(null, {
                         success: function(object) {
-                            alert("Thank you for adding your recipe");
+                            Materialize.toast("Thank you for adding your recipe. ", 2000);
+
                         },
                         error: function(object, error) {
-                            console.log(error.message);
+                            Materialize.toast(error.message, 2000);
                         }
                     });
                 },

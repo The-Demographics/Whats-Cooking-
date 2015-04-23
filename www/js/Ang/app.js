@@ -22,6 +22,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
       $('footer').css('display','inline');
       $('.page').css('display','none');
       $('#home').css('display','inline');
+      $('#page-title').text("Home");
       })
     $timeout( function(){
       ParseService.userDetails(function(results){
@@ -143,6 +144,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         var len = $scope.resultsList.length;
         console.log(len);
         console.log("Trying prep search");
+        $('#SearchText').text("Recipes with prep times of " + term + " minutes or less");
     });
     })
     } else if (type == 2){
@@ -152,6 +154,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         console.log("Trying Dif search");
         var len = $scope.resultsList.length;
         console.log(len);
+        $('#SearchText').text("Recipes with a difficulty level  of " + term + " or less");
     });
     })
   } else if (type == 3){
@@ -161,6 +164,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.resultsList = results;
         var len = $scope.resultsList.length;
         console.log(len);
+        $('#SearchText').text("Recipes containing the ingredient" + term);
     });
     })
   } else {
@@ -232,9 +236,13 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
 
   $scope.viewRecipe = function(){
     var name = this.recipe.get('Name');
+    var img = this.recipe.get('Image');
     $scope.recipeName = name;
+    $scope.recipeImg = img;
+    console.log($scope.recipeImg);
     $('.page').css('display','none');
     $('#recipe').css('display','inline');
+    $('#page-title').text(name);
   }
 
 
@@ -306,6 +314,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
 
   //For recipe page
   $scope.recipeName;
+  $scope.recipeImg;
 
 }
 MainCtrl.$inject = ['$scope', '$timeout','$location', 'ParseService']

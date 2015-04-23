@@ -92,7 +92,13 @@ main{
     margin-bottom: 60px;
 }
 .page{
-    margin-bottom: 60px;
+    margin-bottom: 80px;
+}
+ul.side-nav a{
+    width: 100%;
+}
+nav ul a{
+    padding: 0;
 }
 footer{
     position: fixed;
@@ -124,6 +130,7 @@ footer ul li a{
 }
 #menu-user-account{
     width: 100%;
+    padding-top: 1px; /*Seems to fix the white bar at the top of this div if left out or set to 0*/
 }
 #menu-user-account img{
     position: relative;
@@ -272,4 +279,12 @@ footer{
     font-size: 3em;
     font-weight: bold;
     color: #424242;
+}
+.recipeImage{
+    width: 100%;
+    height: 150px;
+}
+.recipeImageLg{
+    width: 100%;
+    height: 250px;
 }
