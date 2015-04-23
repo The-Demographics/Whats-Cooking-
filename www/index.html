@@ -43,10 +43,16 @@
 
 <!-- START -->
 	<div class="page" id="startUp">
-		<img src="img/logo.png">
+		<div id="backgroundImage">
+        	<img src="img/appbackground.gif" alt="Background Image">
+    	</div>
+    	<div class="row">
+    		<img style="padding-top:5%;" src="img/applogo.svg" alt="Whats Cooking Logo">
+    		<div style="padding-top:-5%;" class="col s12 center-text appTitle">What's Cooking?</div>
+    	</div>
 		<div class="center-text">
-			<a class="waves-effect waves-light btn" id="toLogin">Login</a>
-			<a class="waves-effect waves-light btn" id="toSignUp">Sign Up</a>
+			<a class="waves-effect waves-light btn #4caf50 green" id="toLogin">Login</a>
+			<a class="waves-effect waves-light btn #4caf50 green" id="toSignUp">Sign Up</a>
 		</div>
 	</div>
 
@@ -55,6 +61,9 @@
 
 
 	<div class="page" id="login">
+		<div id="backgroundImage">
+        	<img style="opacity:.4;" src="img/appbackground2.jpg" alt="Background Image">
+    	</div>	
 		<div class="row">
 			<div class="input-field col s12">
         <input id="username-login" type="text" class="validate"  ng-model="login_username">
@@ -82,6 +91,9 @@
 
 
 	<div class="page" id="signUp">
+	<div id="backgroundImage">
+        	<img style="opacity:.4;" src="img/appbackground2.jpg" alt="Background Image">
+    	</div>
 		<div class="row">
 			<div class="input-field col s6">
         <input id="firstname" type="text" class="validate" ng-model="signup_firstname">
