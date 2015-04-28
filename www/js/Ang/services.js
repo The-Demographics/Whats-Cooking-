@@ -145,60 +145,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                     });
                 },
 
-                /*search: function search(_term, _method, callback) {
-                    switch (_method) {
-                        case 1:
-                            console.log("Trying prep time search");
-                            var term = Number(_term);
-                            var query = new Parse.Query(Recipe);
-                            query.lessThanOrEqualTo("PrepTime", term);
-                            query.find({
-                                success: function(results) {
-                                    callback(results);
-                                    console.log("Prep time success")
-                                },
-                                error: function(error) {
-                                    alert("Error: " + error.message);
-                                }
-                            });
-                            break;
-                        case 2:
-                            var term = Number(_term);
-                            if (term > 5) {
-                                alert("Value too high");
-                            } else {
-                                console.log("Trying Difficulty search");
-                                var query = new Parse.Query(Recipe);
-                                query.lessThanOrEqualTo("Difficulty", term);
-                                query.find({
-                                    success: function(results) {
-                                        console.log("Difficulty success");
-                                        callback(results);
-                                    },
-                                    error: function(error) {
-                                        alert("Error: " + error.message);
-                                    }
-                                });
-                            };
-                            break;
-                        case 3:
-                            console.log("Trying Ingredients search");
-                            var query = new Parse.Query(Recipe);
-                            query.equalTo("Ingredients", _term);
-                            query.find({
-                                success: function(results) {
-                                    callback(results);
-                                    console.log("Trying Ingredients search success");
-                                },
-                                error: function(error) {
-                                    alert("Error: " + error.message);
-                                }
-                            });
-                            break;
-                        default:
-                            console.log("Error");
-                    } //End of switch
-                },*/
 
                 searchPrep: function searchPrep(_term, callback) {
                     console.log("Trying prep time search");
@@ -296,48 +242,7 @@ angular.module('WhatsCookingappServices', ['ngResource'])
               })
             },
 
-               /* getMyRecipeBook: function getMyRecipeBook(callback) {
-                    var callbackList = [];
-                    var User = Parse.Object.extend("User");
-                    var query = new Parse.Query(User);
-                    var theuser = Parse.User.current().id;
-                    query.equalTo("objectId", theuser);
-                    query.first({
-                        success: function(user) {
-                            var recipeList = user.get('recipeList');
-                            callback(recipeList);
-                        },
-                        error: function(error){
-                          alert("Error: " + error.message );
-                        }
-                    })
-                },
-
-                getBook: function getBook(list, callback) {
-                    for (var i = 0; i < list.length; i++) {
-                        var query2 = new Parse.Query(Recipe);
-                        query2.equalTo("Name", list[i]);
-                        query2.find({
-                            success: function(results) {
-                                callbackList.push(results);
-                                var len = callbackList.length;
-
-                                if (len >= recipeList.length) {
-                                    console.log("Final Recipe book length is" + len);
-                                    callback(callbackList);
-                                };
-                            },
-                            error: function(error) {
-                                alert("Error: " + error.message);
-                            }
-                        });
-                    }
-
-                }
-            },
-*/
-
-
+               
 
 
             discoverRecipes : function discoverRecipes(callback) {

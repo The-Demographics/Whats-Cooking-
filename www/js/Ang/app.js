@@ -23,6 +23,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
       $('.page').css('display','none');
       $('#home').css('display','inline');
       $('#page-title').text("Home");
+      $scope.loginTestPassed = "True";
       })
     $timeout( function(){
       ParseService.userDetails(function(results){
@@ -66,7 +67,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
 
   // Perform user signup using back-end service
   $scope.signUp = function() {
-    ParseService.signUp($scope.signup_firstname, $scope.signup_lastname,$scope.signup_username, $scope.signup_email, $scope.signup_password, $scope.signup_confirmpassword, $scope.signup_age, $scope.profilePic, function(user) {
+    ParseService.signUp($scope.signup_firstname, $scope.signup_lastname,$scope.signup_username, $scope.signup_email, $scope.signup_password, $scope.signup_confirmpassword, $scope.signup_age, $scope.profilePic, function(user, test) {
       // When service call is finished, navigate to items page
       $('.page').css('display','none');
       $('#login').css('display','inline');
@@ -85,7 +86,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         var len = $scope.recipeList.length;
         console.log(len);
         console.log($scope.recipeList);
-
+        $scope.test2Passed = "True";
       });
     });
   }
@@ -108,13 +109,6 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         $scope.myRecipes = results;
       })
     });
-    /*$timeout( function(){
-      ParseService.getBook($scope.myRecipes, function(results){
-        $scope.$apply(function() {
-          $scope.myRecipes = results;
-      })
-      })
-    }, 200);*/
   }
 
 
@@ -145,6 +139,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         console.log(len);
         console.log("Trying prep search");
         $('#SearchText').text("Recipes with prep times of " + term + " minutes or less");
+        $scope.testSearchType ="Prep Time";
     });
     })
     } else if (type == 2){
@@ -155,6 +150,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         var len = $scope.resultsList.length;
         console.log(len);
         $('#SearchText').text("Recipes with a difficulty level  of " + term + " or less");
+        $scope.testSearchType ="Difficulty";
     });
     })
   } else if (type == 3){
@@ -165,6 +161,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
         var len = $scope.resultsList.length;
         console.log(len);
         $('#SearchText').text("Recipes containing the ingredient" + term);
+        $scope.testSearchType ="Ingredients";
     });
     })
   } else {
@@ -311,6 +308,11 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   console.log("#Yolo");
   $scope.image;
   $scope.profilePic;
+
+  //For Testing
+  $scope.test2Passed;
+  $scope.loginTestPassed;
+  $scope.testSearchType;
 
   //For recipe page
   $scope.recipeName;
