@@ -234,8 +234,22 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   $scope.viewRecipe = function(){
     var name = this.recipe.get('Name');
     var img = this.recipe.get('Image');
+    var theme = this.recipe.get('Theme');
+    var prep = this.recipe.get('PrepTime');
+    var veg = this.recipe.get('Vegetarian');
+    var dif = this.recipe.get('Difficulty');
+    var Ingredients = this.recipe.get('Ingredients');
+    var ing = Ingredients[0];
+    var Method = this.recipe.get('Method');
+    var ins = Method[0];
     $scope.recipeName = name;
     $scope.recipeImg = img;
+    $scope.recipeIng = ing;
+    $scope.recipeIns = ins;
+    $scope.recipeVeg = veg;
+    $scope.recipePrep = prep;
+    $scope.recipeDif = dif;
+    $scope.recipeTheme = theme;
     console.log($scope.recipeImg);
     $('.page').css('display','none');
     $('#recipe').css('display','inline');
@@ -250,7 +264,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   }
 
   //Find current User Details
-  $scope.userDetails = function(){
+  $scope.userDetails = function(){  
     ParseService.userDetails(function(results){
       $scope.$apply(function(){
         $scope.userDetails = results;
@@ -317,6 +331,12 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
   //For recipe page
   $scope.recipeName;
   $scope.recipeImg;
+  $scope.recipeIng;
+  $scope.recipeIns;
+  $scope.recipeVeg;
+  $scope.recipePrep
+  $scope.recipeDif;
+  $scope.recipeTheme;
 
 }
 MainCtrl.$inject = ['$scope', '$timeout','$location', 'ParseService']

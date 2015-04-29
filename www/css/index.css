@@ -288,3 +288,8 @@ footer{
     width: 100%;
     height: 250px;
 }
+#informationList{
+    padding-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
