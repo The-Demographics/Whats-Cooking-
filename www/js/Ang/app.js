@@ -67,7 +67,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
 
   // Perform user signup using back-end service
   $scope.signUp = function() {
-    ParseService.signUp($scope.signup_firstname, $scope.signup_lastname,$scope.signup_username, $scope.signup_email, $scope.signup_password, $scope.signup_confirmpassword, $scope.signup_age, $scope.profilePic, function(user, test) {
+    ParseService.signUp($scope.signup_firstname, $scope.signup_lastname,$scope.signup_username, $scope.signup_email, $scope.signup_password, $scope.signup_confirmpassword, $scope.signup_age, $scope.profilePic, function(user) {
       // When service call is finished, navigate to items page
       $('.page').css('display','none');
       $('#login').css('display','inline');

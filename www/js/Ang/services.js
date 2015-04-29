@@ -88,6 +88,8 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                         user.signUp(null, {
                             success: function(user) {
                                 Materialize.toast("Thank you for signing up ", 2000);
+                                $('.page').css('display','none');
+                                $('#login').css('display','inline');
                             },
                             error: function(user, error) {
                                 // Show the error message somewhere and let the user try again.

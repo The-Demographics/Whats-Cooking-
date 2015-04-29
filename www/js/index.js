@@ -59,6 +59,10 @@ $(document).ready(function () {
         $('.page').css('display','none');
         $('#startUp').css('display','inline');
     });
+    $('#toStartUpSignUp').click(function(){
+        $('#signUp').css('display','none');
+        $('#startUp').css('display','inline');
+    });
     $('#toRecipe').click(function(){
         $('.page').css('display','none');
         $('#recipe').css('display','inline');
