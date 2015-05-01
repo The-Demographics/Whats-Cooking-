@@ -2,13 +2,12 @@
 var imgdata;
 var cameraimg;
 var file;
-// Set an event listener on the Choose File field.
+
 $('#fileselect').bind("change", function(e) {
     var files = e.target.files || e.dataTransfer.files;
-    // Our file var now holds the selected file
     file = files[0];
 });
-// Set an event listener on the Choose File field.
+
 var input = document.querySelector('input[type=file]');
 input.onchange = function() {
     file = input.files[0];
@@ -17,13 +16,13 @@ input.onchange = function() {
 var imgdataProfile;
 var cameraimgProfile;
 var file2;
-// Set an event listener on the Choose File field.
+
 $('#fileselect').bind("change", function(e) {
     var files = e.target.files || e.dataTransfer.files;
-    // Our file var now holds the selected file
+
     file2 = files[0];
 });
-// Set an event listener on the Choose File field.
+
 var input = document.querySelector('input[type=file]');
 input.onchange = function() {
     file2 = input.files[0];
@@ -32,12 +31,12 @@ input.onchange = function() {
 
 angular.module('WhatsCookingappServices', ['ngResource'])
     .factory('ParseService', function($resource) {
-            // Initialize Parse API and objects.
+            // Initialize Parse API 
             Parse.initialize("yKtcMnRhdHbiATzIbmdJX9fDHvCwP4mVKjHhzoup", "KqcToLgLrdh9nMYQYm3xYYbVhFhSDQwgysUl7gxU");
 
             var loggedUser;
 
-            // Cache list of user's recipes
+
             var myRecipes = [];
 
             // Define parse model and collection for Recipe records
@@ -54,7 +53,6 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                     Parse.User.logIn(username, password, {
                         success: function(user) {
                             callback(user);
-                            // getRecipes();
                             loggedUser = user;
 
                         },
@@ -92,7 +90,7 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                                 $('#login').css('display','inline');
                             },
                             error: function(user, error) {
-                                // Show the error message somewhere and let the user try again.
+
                                 Materialize.toast("Error: " + error.code + " " + error.message , 4000);
                             }
                         });
@@ -361,7 +359,5 @@ angular.module('WhatsCookingappServices', ['ngResource'])
                 }
 
         };
-
-        // The factory function returns ParseService, which is injected into controllers.
         return ParseService;
     });

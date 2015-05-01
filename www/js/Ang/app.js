@@ -2,12 +2,8 @@ angular.module('WhatsCookingapp', ['WhatsCookingappServices'])
 .controller('MainCtrl',MainCtrl)
 
 
-/* Controllers */
 
 
-/**
- * Main controller for the app
- */
 function MainCtrl($scope, $timeout, $location, ParseService) {
   $scope.init = function() {
     $scope.user = ParseService.getUser();
@@ -91,7 +87,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
     });
   }
 
-  // Fetch 10 Recipes from the backend service for the discover page
+  // Fetch 5 Recipes from the backend service for the discover page
   $scope.discoverRecipes = function() {
     ParseService.discoverRecipes(function(results) {
       $scope.$apply(function() {
@@ -126,6 +122,7 @@ function MainCtrl($scope, $timeout, $location, ParseService) {
     });
     }, 500);
   }
+
 
   $scope.search = function(){
     var term = $scope.search_term;

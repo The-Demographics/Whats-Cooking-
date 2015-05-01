@@ -26,7 +26,7 @@ describe('MainCtrl', function() {
     it('Test to show only 5 recipes are shown in the discover tab', function() {
 
       // Verify that there are 5 tasks
-      expect(element.all(by.repeater('recipe in discoverRecipeList')).count()).toEqual(10);
+      expect(element.all(by.repeater('recipe in discoverRecipeList')).count()).toEqual(5);
     });
   });
 
@@ -46,7 +46,7 @@ describe('MainCtrl', function() {
       $scope.login_username = "User"
       $scope.login_password = "Pass"
       $scope.login();
-      expect($scopetloginTestPassed).toEqual('True');
+      expect($scope.loginTestPassed).toEqual('True');
     })
 
 
